@@ -12,27 +12,27 @@ def autonomous(self):
     autonomous = 1              #Bool to run autonomous mode. Will be used later as a safeguard to shut off autonomous mode
     try:
         while autonomous:
-        stopBot()
-        dist = get_distance(self)  #checks in front of itself first before moving
-        if dist <= minDist:
             stopBot()
-            for i in range(30,151,120):
-                self.pwm_S.setServoPwm('0',i)
-                time.sleep(0.2)
-                if i==30:
-                    L = self.get_distance()
-                elif i==150:
-                    R = self.get_distance()
-            path = self.decidePath(L,R)
-            if (path == 1):
-                moveRight()
-            elif (path == 2):
-                moveLeft() 
-            elif (path == 3):
+            dist = get_distance(self)  #checks in front of itself first before moving
+            if dist <= minDist:
                 stopBot()
-                print("haven't implemented stack yet. Don't know where to go.")
-        else:
-            moveForward()
+                for i in range(30,151,120):
+                    self.pwm_S.setServoPwm('0',i)
+                    time.sleep(0.2)
+                    if i==30:
+                        L = self.get_distance()
+                    elif i==150:
+                        R = self.get_distance()
+                path = self.decidePath(L,R)
+                if (path == 1):
+                    moveRight()
+                elif (path == 2):
+                    moveLeft() 
+                elif (path == 3):
+                    stopBot()
+                    print("haven't implemented stack yet. Don't know where to go.")
+            else:
+                moveForward()
      except KeyboardInterrupt:  # When 'Ctrl+C' is pressed, the child program destroy() will be  executed.
         PWM.setMotorModel(0,0,0,0)
         pwm_S.setServoPwm('0',90)
