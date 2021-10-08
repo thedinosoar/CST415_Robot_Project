@@ -75,5 +75,5 @@ def test():
         PWM.setMotorModel(0,0,0,0)
         pwm_S.setServoPwm('0',90)
 
-#autonomous()
-test()
+autonomous()
+#test()
