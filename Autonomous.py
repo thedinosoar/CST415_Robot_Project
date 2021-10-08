@@ -39,13 +39,13 @@ def autonomous():
         pwm_S.setServoPwm('0',90)
 
 def decidePath(left,right):
-    L = left
-    R = right
-    if L < R:
+    Lf = left
+    Rt = right
+    if Lf < Rt:
         return 1
-    if R < L:
+    if Rt < Lf:
         return 2
-    if L == R:
+    if Lf == Rt:
         return 3
 
 def moveForward():
