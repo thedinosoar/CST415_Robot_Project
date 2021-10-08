@@ -13,16 +13,16 @@ def autonomous():
     try:
         while True:
             stopBot()
-            dist = pwm_S.get_distance()  #checks in front of itself first before moving
+            dist = Ultrasonic.get_distance()  #checks in front of itself first before moving
             if dist <= minDist:
                 stopBot()
                 for i in range(30,151,120):
                     pwm_S.setServoPwm('0',i)
                     time.sleep(0.2)
                     if i==30:
-                        L = pwm_S.get_distance()
+                        L = Ultrasonic.get_distance()
                     elif i==150:
-                        R = pwm_S.get_distance()
+                        R = Ultrasonic.get_distance()
                 path = decidePath(L,R)
                 if (path == 1):
                     moveRight()
