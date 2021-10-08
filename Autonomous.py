@@ -7,23 +7,23 @@ PWM = Motor()
 pwm_S = Servo()
 Ultrasonic = Ultrasonic()
 
-def autonomous(self): 
+def autonomous(): 
     minDist = 30                #minimum distance robot can be
     #autonomous = 1              #Bool to run autonomous mode. Will be used later as a safeguard to shut off autonomous mode
     try:
         while True:
             stopBot()
-            dist = get_distance(self)  #checks in front of itself first before moving
+            dist = pwm_S.get_distance()  #checks in front of itself first before moving
             if dist <= minDist:
                 stopBot()
                 for i in range(30,151,120):
-                    self.pwm_S.setServoPwm('0',i)
+                    pwm_S.setServoPwm('0',i)
                     time.sleep(0.2)
                     if i==30:
-                        L = self.get_distance()
+                        L = pwm_S.get_distance()
                     elif i==150:
-                        R = self.get_distance()
-                path = self.decidePath(L,R)
+                        R = pwm_S.get_distance()
+                path = decidePath(L,R)
                 if (path == 1):
                     moveRight()
                 elif (path == 2):
@@ -37,7 +37,7 @@ def autonomous(self):
         PWM.setMotorModel(0,0,0,0)
         pwm_S.setServoPwm('0',90)
 
-def decidePath(self,left,right):
+def decidePath(left,right):
     L = left
     R = right
     if L < R:
@@ -48,19 +48,19 @@ def decidePath(self,left,right):
         return 3
 
 def moveForward():
-    self.PWM.setMotorModel(1000,1000,1000,1000)
+    PWM.setMotorModel(1000,1000,1000,1000)
     time.sleep(2)
 
 def moveLeft():
-    self.PWM.setMotorModel(-500,-500,1500,1500)
+    PWM.setMotorModel(-500,-500,1500,1500)
     time.sleep(2)
 
 def moveRight():
-    self.PWM.setMotorModel(1500,1500,-500,-500)
+    PWM.setMotorModel(1500,1500,-500,-500)
     time.sleep(2)
 
 def stopBot():
-    self.PWM.setMotorModel(0,0,0,0)
+    PWM.setMotorModel(0,0,0,0)
     time.sleep(2)
 
-self.autonomous()
+autonomous()
