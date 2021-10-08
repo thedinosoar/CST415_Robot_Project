@@ -12,6 +12,7 @@ def autonomous(self):
     minDist = 30                #minimum distance robot can be
     autonomous = 1              #Bool to run autonomous mode. Will be used later as a safeguard to shut off autonomous mode
         while autonomous:
+        stopBot()
         dist = get_distance(self)  #checks in front of itself first before moving
         if dist <= minDist:
             stopBot()
@@ -32,7 +33,6 @@ def autonomous(self):
                 print("haven't implemented stack yet. Don't know where to go.")
         else:
             moveForward()
-            stopBot()
 
 def decidePath(self,left,right):
     L = left
@@ -67,3 +67,5 @@ def main():
     except KeyboardInterrupt:  # When 'Ctrl+C' is pressed, the child program destroy() will be  executed.
         PWM.setMotorModel(0,0,0,0)
         pwm_S.setServoPwm('0',90)
+
+main()
