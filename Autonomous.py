@@ -49,15 +49,15 @@ def decidePath(left,right):
         return 3
 
 def moveForward():
-    PWM.setMotorModel(-1000,1000,1000,1000)
+    PWM.setMotorModel(-1000,1000,1000,-1000)
     time.sleep(2)
 
 def moveLeft():
-    PWM.setMotorModel(500,-500,1500,1500)
+    PWM.setMotorModel(500,-500,1500,-1500)
     time.sleep(2)
 
 def moveRight():
-    PWM.setMotorModel(-1500,1500,-500,-500)
+    PWM.setMotorModel(-1500,1500,-500,500)
     time.sleep(2)
 
 def stopBot():
@@ -66,11 +66,11 @@ def stopBot():
 
 def test():
     try:
-        PWM.setMotorModel(0,0,0,1000)
+        PWM.setMotorModel(0,0,0,-1000)
         time.sleep(2)
     except KeyboardInterrupt:  # When 'Ctrl+C' is pressed, the child program destroy() will be  executed.
         PWM.setMotorModel(0,0,0,0)
         pwm_S.setServoPwm('0',90)
 
-#autonomous()
-test()
+autonomous()
+#test()
