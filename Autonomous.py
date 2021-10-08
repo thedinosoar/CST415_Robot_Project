@@ -12,6 +12,7 @@ def autonomous():
     #autonomous = 1              #Bool to run autonomous mode. Will be used later as a safeguard to shut off autonomous mode
     try:
         while True:
+            L,R
             stopBot()
             dist = Ultrasonic.get_distance()  #checks in front of itself first before moving
             if dist > minDist:
