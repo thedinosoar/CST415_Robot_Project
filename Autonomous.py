@@ -5,7 +5,7 @@ from Ultrasonic import *
 from PCA9685 import PCA9685
 PWM = Motor()
 pwm_S = Servo()
-ultrasonic = Ultrasonic()
+Ultrasonic = Ultrasonic()
 
 def autonomous(self): 
     minDist = 30                #minimum distance robot can be
