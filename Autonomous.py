@@ -64,4 +64,9 @@ def stopBot():
     PWM.setMotorModel(0,0,0,0)
     time.sleep(2)
 
-autonomous()
+def test():
+    PWM.setMotorModel(1000,1000,1000,1000)
+    time.sleep(2)
+
+#autonomous()
+test()
