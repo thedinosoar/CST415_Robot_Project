@@ -68,7 +68,8 @@ def test():
     try:
         # PWM.setMotorModel(0,0,0,-1000)
         # time.sleep(2)
-        pwm_S.setServoPwm('0',45)
+        for i in range(70,110,5):
+            pwm_S.setServoPwm('0',i)
     except KeyboardInterrupt:  # When 'Ctrl+C' is pressed, the child program destroy() will be  executed.
         PWM.setMotorModel(0,0,0,0)
         pwm_S.setServoPwm('0',90)
