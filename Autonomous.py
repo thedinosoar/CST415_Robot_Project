@@ -13,6 +13,7 @@ def autonomous():
     try:
         while True:
             stopBot()
+            L, R = Ultrasonic.get_distance()
             dist = Ultrasonic.get_distance()  #checks in front of itself first before moving
             if dist > minDist:
                 moveForward()
@@ -25,14 +26,14 @@ def autonomous():
                         L = Ultrasonic.get_distance()
                     elif i==110:
                         R = Ultrasonic.get_distance()
-                    path = decidePath(L,R)
-                    if (path == 1):
-                        moveRight()
-                    elif (path == 2):
-                        moveLeft() 
-                    elif (path == 3):
-                        stopBot()
-                        print("haven't implemented stack yet. Don't know where to go.")
+                path = decidePath(L,R)
+                if (path == 1):
+                    moveRight()
+                elif (path == 2):
+                    moveLeft() 
+                elif (path == 3):
+                    stopBot()
+                    print("haven't implemented stack yet. Don't know where to go.")
                 
     except KeyboardInterrupt:  # When 'Ctrl+C' is pressed, the child program destroy() will be  executed.
         PWM.setMotorModel(0,0,0,0)
