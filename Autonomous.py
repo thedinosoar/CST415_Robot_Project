@@ -65,8 +65,12 @@ def stopBot():
     time.sleep(2)
 
 def test():
-    PWM.setMotorModel(1000,1000,1000,1000)
-    time.sleep(2)
+    try:
+        PWM.setMotorModel(1000,0,0,0)
+        time.sleep(2)
+    except KeyboardInterrupt:  # When 'Ctrl+C' is pressed, the child program destroy() will be  executed.
+        PWM.setMotorModel(0,0,0,0)
+        pwm_S.setServoPwm('0',90)
 
 #autonomous()
 test()
