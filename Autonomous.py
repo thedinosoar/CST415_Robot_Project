@@ -1,6 +1,5 @@
 import time
 from Motor import *
-import RPI.GPIO as GPIO
 from servo import *
 from Utrasonic import *
 from PCA9685 import PCA9685
