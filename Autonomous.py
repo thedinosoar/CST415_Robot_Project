@@ -33,7 +33,7 @@ def autonomous(self):
                     print("haven't implemented stack yet. Don't know where to go.")
             else:
                 moveForward()
-     except KeyboardInterrupt:  # When 'Ctrl+C' is pressed, the child program destroy() will be  executed.
+    except KeyboardInterrupt:  # When 'Ctrl+C' is pressed, the child program destroy() will be  executed.
         PWM.setMotorModel(0,0,0,0)
         pwm_S.setServoPwm('0',90)
 
