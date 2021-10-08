@@ -9,9 +9,9 @@ Ultrasonic = Ultrasonic()
 
 def autonomous(self): 
     minDist = 30                #minimum distance robot can be
-    autonomous = 1              #Bool to run autonomous mode. Will be used later as a safeguard to shut off autonomous mode
+    #autonomous = 1              #Bool to run autonomous mode. Will be used later as a safeguard to shut off autonomous mode
     try:
-        while autonomous:
+        while True:
             stopBot()
             dist = get_distance(self)  #checks in front of itself first before moving
             if dist <= minDist:
