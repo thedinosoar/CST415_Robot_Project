@@ -1,7 +1,7 @@
 import time
 from Motor import *
 from servo import *
-from Utrasonic import *
+from Ultrasonic import *
 from PCA9685 import PCA9685
 PWM = Motor()
 pwm_S = Servo()
