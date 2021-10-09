@@ -13,7 +13,6 @@ def autonomous():
     try:
         while True:
             stopBot()
-            L,R = 0
             dist = Ultrasonic.get_distance()  #checks in front of itself first before moving
             if dist > minDist:
                 moveForward()
@@ -51,19 +50,19 @@ def decidePath(left,right):
 
 def moveForward():
     PWM.setMotorModel(-1000,1000,1000,-1000)
-    time.sleep(2)
+    time.sleep(0.1)
 
 def moveLeft():
     PWM.setMotorModel(500,-500,1500,-1500)
-    time.sleep(2)
+    time.sleep(0.1)
 
 def moveRight():
     PWM.setMotorModel(-1500,1500,-500,500)
-    time.sleep(2)
+    time.sleep(0.1)
 
 def stopBot():
     PWM.setMotorModel(0,0,0,0)
-    time.sleep(2)
+    time.sleep(0.1)
 
 def test():
     try:
