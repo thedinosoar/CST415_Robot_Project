@@ -27,6 +27,9 @@ def autonomous():
                         R = Ultrasonic.get_distance()
                 path = decidePath(L,R)        #decides best path with left and right distances
                 if (path == 1):               #means right path is better. Turn right
+                path = decidePath(L,R)
+
+                if (path == 1):
                     moveRight()
                 elif (path == 2):             #means left path is better. Turn left
                     moveLeft() 
