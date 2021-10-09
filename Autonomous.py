@@ -13,7 +13,6 @@ def autonomous():
     try:
         while True:
             stopBot()
-            L,R
             dist = Ultrasonic.get_distance()  #checks in front of itself first before moving
             if dist > minDist:
                 moveForward()
