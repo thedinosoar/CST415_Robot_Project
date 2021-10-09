@@ -18,7 +18,7 @@ def autonomous():
                 moveForward()
             else:
                 stopBot()
-                for i in range(70,110,40):
+                for i in range(70,111,40): # Looks around to gather info
                     pwm_S.setServoPwm('0',i)
                     time.sleep(0.2)
                     if i==70:
@@ -26,6 +26,7 @@ def autonomous():
                     elif i==110:
                         R = Ultrasonic.get_distance()
                 path = decidePath(L,R)
+
                 if (path == 1):
                     moveRight()
                 elif (path == 2):
