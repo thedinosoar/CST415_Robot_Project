@@ -18,7 +18,7 @@ def autonomous():
                 moveForward()
             else:
                 stopBot()
-                for i in range(7,111,40):
+                for i in range(70,111,40):
                     pwm_S.setServoPwm('0',i)
                     time.sleep(0.2)
                     if i==70:
