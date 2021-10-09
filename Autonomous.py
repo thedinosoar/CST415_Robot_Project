@@ -12,25 +12,25 @@ def autonomous():
     #autonomous = 1              #Bool to run autonomous mode. Will be used later as a safeguard to shut off autonomous mode
     try:
         while True:
-            stopBot()
+            stopBot()   #stops bot each cycle to prevent any big collisions during testing
             dist = Ultrasonic.get_distance()  #checks in front of itself first before moving
-            if dist > minDist:
+            if dist > minDist:                #if there are no obstacles within minDistance than move forward
                 moveForward()
-            else:
-                stopBot()
-                for i in range(70,111,40):
-                    pwm_S.setServoPwm('0',i)
+            else:                             #runs if it senses obstacle within minDistance
+                stopBot()                     #stops bot when it spotted an obstacle
+                for i in range(70,111,40):    #for loop to cycle through left and right servo positions
+                    pwm_S.setServoPwm('0',i)  #sets servo direction
                     time.sleep(0.2)
-                    if i==70:
+                    if i==70:                 #if servo is left grab that distance
                         L = Ultrasonic.get_distance()
-                    elif i==110:
+                    elif i==110:              #if servo is right grab that distance
                         R = Ultrasonic.get_distance()
-                path = decidePath(L,R)
-                if (path == 1):
+                path = decidePath(L,R)        #decides best path with left and right distances
+                if (path == 1):               #means right path is better. Turn right
                     moveRight()
-                elif (path == 2):
+                elif (path == 2):             #means left path is better. Turn left
                     moveLeft() 
-                elif (path == 3):
+                elif (path == 3):             #both left and right options are blocked. Will be decided in future steps
                     stopBot()
                     print("haven't implemented stack yet. Don't know where to go.")
                 
@@ -38,26 +38,27 @@ def autonomous():
         PWM.setMotorModel(0,0,0,0)
         pwm_S.setServoPwm('0',90)
 
-def decidePath(left,right):
-    Lf = left
+def decidePath(left,right):                 #function to decide which path is better
+    Lf = left                               
     Rt = right
-    if Lf < Rt:
+    if Lf < Rt:                             #if left distance is less than right, return 1
         return 1
-    if Rt < Lf:
+    if Rt < Lf:                             #if right is less than left, return 2
         return 2
-    if Lf == Rt:
+    if Lf == Rt:                            #if both are the same, return 3
         return 3
 
+#Functions to move the bot
 def moveForward():
-    PWM.setMotorModel(-1000,1000,1000,-1000)
+    PWM.setMotorModel(-1000,1000,1000,-1000)    #Front left and back right wheel inputs are reversed for some reason
     time.sleep(0.1)
 
 def moveLeft():
-    PWM.setMotorModel(500,-500,1500,-1500)
+    PWM.setMotorModel(500,-500,2000,-2000)
     time.sleep(0.1)
 
 def moveRight():
-    PWM.setMotorModel(-1500,1500,-500,500)
+    PWM.setMotorModel(-2000,2000,-500,500)
     time.sleep(0.1)
 
 def stopBot():
