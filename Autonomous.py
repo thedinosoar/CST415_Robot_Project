@@ -8,11 +8,11 @@ pwm_S = Servo()
 Ultrasonic = Ultrasonic()
 
 def autonomous(): 
-    minDist = 30                #minimum distance robot can be
+    minDist = 50                #minimum distance robot can be
     #autonomous = 1              #Bool to run autonomous mode. Will be used later as a safeguard to shut off autonomous mode
     try:
         while True:
-            stopBot()   #stops bot each cycle to prevent any big collisions during testing
+            #stopBot()   #stops bot each cycle to prevent any big collisions during testing
             dist = Ultrasonic.get_distance()  #checks in front of itself first before moving
             if dist > minDist:                #if there are no obstacles within minDistance than move forward
                 moveForward()
@@ -26,9 +26,6 @@ def autonomous():
                     elif i==110:              #if servo is right grab that distance
                         R = Ultrasonic.get_distance()
                 path = decidePath(L,R)        #decides best path with left and right distances
-                if (path == 1):               #means right path is better. Turn right
-                path = decidePath(L,R)
-
                 if (path == 1):
                     moveRight()
                 elif (path == 2):             #means left path is better. Turn left
