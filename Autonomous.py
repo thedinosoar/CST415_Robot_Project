@@ -1,83 +1,120 @@
-import time
-from Motor import *
-from servo import *
-from Ultrasonic import *
-from PCA9685 import PCA9685
-PWM = Motor()
-pwm_S = Servo()
-Ultrasonic = Ultrasonic()
+from enum import Enum
+from Robot import *
 
-def autonomous(): 
-    minDist = 30                #minimum distance robot can be
-    #autonomous = 1              #Bool to run autonomous mode. Will be used later as a safeguard to shut off autonomous mode
+min_dist_before_stop = 30  # minimum distance robot can be
+
+def autonomous():
+
+    # autonomous = 1 # Bool to run autonomous mode. Will be used later as a safeguard to shut off autonomous mode
     try:
         while True:
-            stopBot()   #stops bot each cycle to prevent any big collisions during testing
-            dist = Ultrasonic.get_distance()  #checks in front of itself first before moving
-            if dist > minDist:                #if there are no obstacles within minDistance than move forward
+            stopBot()
+
+            # Checks if Robot can move forward
+            if getDistance() > min_dist_before_stop:
                 moveForward()
-            else:                             #runs if it senses obstacle within minDistance
-                stopBot()                     #stops bot when it spotted an obstacle
-                for i in range(70,111,40):    #for loop to cycle through left and right servo positions
-                    pwm_S.setServoPwm('0',i)  #sets servo direction
-                    time.sleep(0.2)
-                    if i==70:                 #if servo is left grab that distance
-                        L = Ultrasonic.get_distance()
-                    elif i==110:              #if servo is right grab that distance
-                        R = Ultrasonic.get_distance()
-                path = decidePath(L,R)        #decides best path with left and right distances
-                if (path == 1):               #means right path is better. Turn right
-                path = decidePath(L,R)
+            else:
+                if not changeDirection():
+                    backTrack()
 
-                if (path == 1):
-                    moveRight()
-                elif (path == 2):             #means left path is better. Turn left
-                    moveLeft() 
-                elif (path == 3):             #both left and right options are blocked. Will be decided in future steps
-                    stopBot()
-                    print("haven't implemented stack yet. Don't know where to go.")
-                
     except KeyboardInterrupt:  # When 'Ctrl+C' is pressed, the child program destroy() will be  executed.
-        PWM.setMotorModel(0,0,0,0)
-        pwm_S.setServoPwm('0',90)
+        killBot()
 
-def decidePath(left,right):                 #function to decide which path is better
-    Lf = left                               
-    Rt = right
-    if Lf < Rt:                             #if left distance is less than right, return 1
-        return 1
-    if Rt < Lf:                             #if right is less than left, return 2
-        return 2
-    if Lf == Rt:                            #if both are the same, return 3
-        return 3
+def furthestChoice(left_path, right_path):  # Returns which path is furthest
 
-#Functions to move the bot
-def moveForward():
-    PWM.setMotorModel(-1000,1000,1000,-1000)    #Front left and back right wheel inputs are reversed for some reason
-    time.sleep(0.1)
+    # Checks if the left path is far enough from the min distance
+    if left_path < min_dist_before_stop:
+        if right_path < min_dist_before_stop:
+            return 0
+        return RIGHT
 
-def moveLeft():
-    PWM.setMotorModel(500,-500,2000,-2000)
-    time.sleep(0.1)
+    # Checks if the right path is far enough from the min distance
+    if right_path < min_dist_before_stop:
+        if left_path < min_dist_before_stop:
+            return STOP
+        return LEFT
 
-def moveRight():
-    PWM.setMotorModel(-2000,2000,-500,500)
-    time.sleep(0.1)
+    # Checks which path is further
+    if left_path < right_path:
+        return LEFT
+    if right_path < left_path:
+        return RIGHT
+    if left_path == right_path:
+        print("Path options are equal")
+        return False
 
-def stopBot():
-    PWM.setMotorModel(0,0,0,0)
-    time.sleep(0.1)
+def closestChoice(left_path, right_path):  # Returns which path is furthest
+
+    # Checks if the left path is far enough from the min distance
+    if left_path < min_dist_before_stop:
+        if right_path < min_dist_before_stop:
+            return 0
+        return RIGHT
+
+    # Checks if the right path is far enough from the min distance
+    if right_path < min_dist_before_stop:
+        if left_path < min_dist_before_stop:
+            return STOP
+        return LEFT
+
+    # Checks which path is further
+    if left_path > right_path:
+        return LEFT
+    if right_path > left_path:
+        return RIGHT
+    if left_path == right_path:
+        print("Path options are equal")
+        return 0
+
+def changeDirection():
+    look(70) # looks to the left
+    time.sleep(0.2)
+    left_path = getDistance()
+
+    look(110) # looks to the right
+    time.sleep(0.2)
+    right_path = getDistance()
+
+    lookForward()
+
+    next_direction = furthestChoice(left_path, right_path)
+    turn(next_direction)
+
+    # returns whether or not the robot could change directions
+    if not next_direction:
+        return False
+    else:
+        return True
+
+# This is not finished yet,  but it will backtrack the robots history
+def backTrack():
+    return 0
+
+
+    if choiceStack.__sizeof__() == 0:
+        print("Stack Empty, cam't backtrack")
+        return False
+
+    new_path_found = False
+
+    while(not new_path_found):
+
+        if(choiceStack[choiceStack.__sizeof__()-1].move_direction == (LEFT or RIGHT)):
+            turn(-choiceStack[choiceStack.__sizeof__()-1].move_direction,choiceStack.__sizeof__()-1].move_distance, choiceStack.__sizeof__()-1].move_speed)
+            choiceStack.pop()
+
+
+
 
 def test():
     try:
         # PWM.setMotorModel(0,0,0,-1000)
         # time.sleep(2)
         for i in range(70,110,5):
-            pwm_S.setServoPwm('0',i)
+            pwm_S.setServoPwm('0', i)
             time.sleep(0.2)
     except KeyboardInterrupt:  # When 'Ctrl+C' is pressed, the child program destroy() will be  executed.
-        PWM.setMotorModel(0,0,0,0)
-        pwm_S.setServoPwm('0',90)
+        killBot()
+
 
 autonomous()
-#test()
