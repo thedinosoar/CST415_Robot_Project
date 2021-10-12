@@ -27,7 +27,6 @@ class Choice:
         self.move_speed = move_speed
 
 
-
 # Movement Functions
 def moveForward():  # Moves the bot Forward default distance
     PWM.setMotorModel(-1000*defaultMoveSpeed, 1000*defaultMoveSpeed, 1000*defaultMoveSpeed, -1000*defaultMoveSpeed)
@@ -105,7 +104,3 @@ def lookForward():
 
 def look(direction):
     pwm_S.setServoPwm('0', direction)
-
-
-
-

@@ -13,13 +13,15 @@ def autonomous():
             if getDistance() > min_dist_before_stop:
                 moveForward()
             else:
-                if not changeDirection():
-                    if not backTrack():
+                if not changeDirection(): # If the robot can't change direction
+                    test_Buzzer()
+                    if not backTrack(False):
                         print("=======================")
                         print("Cannot BackTrack, no more options")
                         print("Ending program...")
                         killBot()
                         return 0
+            time.sleep(.1)
 
     except KeyboardInterrupt:  # When 'Ctrl+C' is pressed, the child program destroy() will be  executed.
         killBot()
@@ -47,7 +49,7 @@ def furthestChoice(left_path, right_path):  # Returns which path is furthest
         print("Path options are equal")
         return False
 
-def closestChoice(left_path_dist, right_path_dist):  # Returns which path is furthest
+def closestChoice(left_path_dist, right_path_dist):  # Returns which path is closest
 
     # Checks if the left path is far enough from the min distance
     if left_path_dist < min_dist_before_stop:
@@ -93,7 +95,7 @@ def changeDirection():
 # This is not finished yet,  but it will backtrack the robots history
 def backTrack(function_done):
     if not function_done:
-        return not function_done
+        return not False
 
     try:
         if choiceStack.__sizeof__() == 0:
@@ -117,11 +119,27 @@ def test():
     try:
         # PWM.setMotorModel(0,0,0,-1000)
         # time.sleep(2)
-        for i in range(70,110,5):
+        for i in range(70, 110, 5):
             pwm_S.setServoPwm('0', i)
             time.sleep(0.2)
     except KeyboardInterrupt:  # When 'Ctrl+C' is pressed, the child program destroy() will be  executed.
         killBot()
 
+from Buzzer import *
+buzzer=Buzzer()
+def test_Buzzer():
+    try:
+        buzzer.run('1')
+        time.sleep(1)
+        print ("1S")
+        time.sleep(1)
+        print ("2S")
+        time.sleep(1)
+        print ("3S")
+        buzzer.run('0')
+        print ("\nEnd of program")
+    except KeyboardInterrupt:
+        buzzer.run('0')
+        print ("\nEnd of program")
 
 autonomous()
