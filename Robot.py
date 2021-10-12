@@ -33,7 +33,7 @@ def moveForward():  # Moves the bot Forward default distance
     time.sleep(defaultMoveDistance)
     choiceStack.append(Choice(FORWARD,defaultMoveDistance, defaultMoveSpeed))
 
-def moveForward(distance, speed):
+def moveForwardSpecified(distance, speed):
     PWM.setMotorModel(-1000*speed, 1000*speed, 1000*speed, -1000*speed)
     time.sleep(distance)
     choiceStack.append(Choice(FORWARD,distance, speed))
@@ -43,7 +43,7 @@ def moveBackward(): # Moves the bot backward default distance
     PWM.setMotorModel(1000, -1000, -1000, 1000)    # Front left and back right wheel inputs are reversed for some reason
     time.sleep(defaultMoveDistance)
     choiceStack.append(Choice(BACKWARD,defaultMoveDistance, defaultMoveSpeed))
-def moveBackward(distance, speed):
+def moveBackwardSpecified(distance, speed):
     PWM.setMotorModel(1000*speed, -1000*speed, -1000*speed, 1000*speed)
     time.sleep(distance)
     choiceStack.append(Choice(BACKWARD,distance, speed))
@@ -53,7 +53,7 @@ def turnLeft(): # Turns the bot to the left
     PWM.setMotorModel(500, -500, 2000, -2000)
     time.sleep(defaultMoveDistance)
     choiceStack.append(Choice(LEFT,defaultMoveDistance, defaultMoveSpeed))
-def turnLeft(distance, speed):
+def turnLeftSpecified(distance, speed):
     PWM.setMotorModel(500*speed, -500*speed, 2000*speed, -2000*speed)
     time.sleep(distance)
     choiceStack.append(Choice(LEFT,distance, speed))
@@ -63,7 +63,7 @@ def turnRight(): # Turns the bot to the right
     PWM.setMotorModel(-2000, 2000, -500, 500)
     time.sleep(defaultMoveDistance)
     choiceStack.append(Choice(RIGHT,defaultMoveDistance, defaultMoveSpeed))
-def turnRight(distance, speed):
+def turnRightSpecified(distance, speed):
     PWM.setMotorModel(-2000*speed, 2000*speed, -500*speed, 500*speed)
     time.sleep(distance)
     choiceStack.append(Choice(FORWARD,defaultMoveDistance, defaultMoveSpeed))
@@ -76,7 +76,7 @@ def turn(direction):
     if direction == STOP:
         stopBot()
     print("turn() ERROR: Input should be LEFT, RIGHT, or STOP")
-def turn(direction, duration, speed):
+def turnSpecified(direction, duration, speed):
     if direction == LEFT:
         turnLeft(duration, speed)
     if direction == RIGHT:
