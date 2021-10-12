@@ -100,7 +100,7 @@ def backTrack():
     while(not new_path_found):
 
         if(choiceStack[choiceStack.__sizeof__()-1].move_direction == (LEFT or RIGHT)):
-            turn(-choiceStack[choiceStack.__sizeof__()-1].move_direction,choiceStack.__sizeof__()-1].move_distance, choiceStack.__sizeof__()-1].move_speed)
+            #turn(-choiceStack[choiceStack.__sizeof__()-1].move_direction,choiceStack.__sizeof__()-1].move_distance, choiceStack.__sizeof__()-1].move_speed)
             choiceStack.pop()
 
 
