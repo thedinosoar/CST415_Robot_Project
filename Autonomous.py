@@ -18,8 +18,8 @@ def autonomous():
             else:
                 stopBot()
                 moveBackwardAmount = 0
-                if choiceStack.__sizeof__() > 0:
-                    while(choiceStack.pop().move_direction == FORWARD):
+                if choiceStack.count(Choice) > 0:
+                    while(choiceStack[-1].move_direction == FORWARD):
                         moveBackwardAmount+=1
                         # choiceStack.pop()
                     moveBackward(moveBackwardAmount*defaultMoveDistance, defaultMoveSpeed)
