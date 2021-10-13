@@ -15,7 +15,7 @@ def autonomous():
                     test_Buzzer()
                     if debugMode:
                         print("Attempting backtracking")
-                    if backtrack(True):
+                    if backtrack(False):
                         print("=======================")
                         print("Cannot Backtrack")
                         print("Ending program...")
