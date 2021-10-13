@@ -14,9 +14,16 @@ def autonomous():
 
             # Checks if Robot can move forward
             if getDistance() > min_dist_before_stop:
-                moveForward(defaultMoveDistance, 500)
+                moveForward(defaultMoveDistance, defaultMoveSpeed)
             else:
                 stopBot()
+                moveBackwardAmount = 0
+                if choiceStack.__sizeof__() > 0:
+                    while(choiceStack[-1].move_direction == FORWARD):
+                        moveBackwardAmount+=1
+                        choiceStack.pop()
+                    moveBackward(moveBackwardAmount*defaultMoveDistance, defaultMoveSpeed)
+
                 if not changeDirection():  # If the robot can't change direction
                     test_Buzzer()
                     if debugMode:
@@ -39,7 +46,6 @@ def furthestChoice(left_path_dist, right_path_dist):  # Returns which path is fu
     return RIGHT
 
 def changeDirection():
-    moveBackward(4*defaultMoveDistance, 700)
     if debugMode:
         print("Changing Direction")
     look(70)  # looks to the left

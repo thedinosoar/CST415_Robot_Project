@@ -44,15 +44,15 @@ def moveBackward(distance, speed):
     PWM.setMotorModel(0, 0, 0, 0)
 
 def turnLeft(duration, speed):
-    # PWM.setMotorModel(.5*speed, -.5*speed, 2*speed, -2*speed)
-    PWM.setMotorModel(500, -500, 2000, -2000)
+    PWM.setMotorModel(speed, -speed, speed, -speed)
+    # PWM.setMotorModel(2000, -2000, 2000, -2000)
     time.sleep(duration)
     choiceStack.append(Choice(LEFT, duration, speed))
     PWM.setMotorModel(0, 0, 0, 0)
 
 def turnRight(duration, speed):
-    # PWM.setMotorModel(-2*speed, 2*speed, -0.5*speed, 0.5*speed)
-    PWM.setMotorModel(-2000, 2000, -500, 500)
+    PWM.setMotorModel(-speed, speed, -speed, speed)
+    # PWM.setMotorModel(-2000, 2000, -500, 500)
     time.sleep(duration)
     choiceStack.append(Choice(RIGHT, duration, speed))
     PWM.setMotorModel(0, 0, 0, 0)
@@ -60,10 +60,13 @@ def turnRight(duration, speed):
 def turn(direction, duration, speed):
     if direction == LEFT:
         turnLeft(duration, speed)
+        return True
     if direction == RIGHT:
         turnRight(duration, speed)
+        return True
     if direction == STOP:
         PWM.setMotorModel(0, 0, 0, 0)
+        return True
     print("turn() ERROR: Input should be LEFT, RIGHT, or STOP")
 
 
