@@ -44,13 +44,15 @@ def moveBackward(distance, speed):
     PWM.setMotorModel(0, 0, 0, 0)
 
 def turnLeft(duration, speed):
-    PWM.setMotorModel(.5*speed, -.5*speed, 2*speed, -2*speed)
+    # PWM.setMotorModel(.5*speed, -.5*speed, 2*speed, -2*speed)
+    PWM.setMotorModel(500, -500, 2000, -2000)
     time.sleep(duration)
     choiceStack.append(Choice(LEFT, duration, speed))
     PWM.setMotorModel(0, 0, 0, 0)
 
 def turnRight(duration, speed):
-    PWM.setMotorModel(-2*speed, 2*speed, -.5*speed, .5*speed)
+    # PWM.setMotorModel(-2*speed, 2*speed, -0.5*speed, 0.5*speed)
+    PWM.setMotorModel(-2000, 2000, -500, 500)
     time.sleep(duration)
     choiceStack.append(Choice(RIGHT, duration, speed))
     PWM.setMotorModel(0, 0, 0, 0)

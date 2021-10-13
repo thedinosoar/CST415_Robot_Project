@@ -49,13 +49,13 @@ def changeDirection():
 
     next_direction = furthestChoice(left_path, right_path)
     if debugMode:
-        print("next_direction = ", next_direction)
-    if next_direction is LEFT:
+        print("next_direction = ", dir(next_direction))
+    if next_direction == LEFT:
         if left_path >= min_dist_before_stop:
             turn(next_direction, defaultMoveDistance, defaultMoveSpeed)
             return True
 
-    if next_direction is RIGHT:
+    if next_direction == RIGHT:
         if right_path >= min_dist_before_stop:
             turn(next_direction, defaultMoveDistance, defaultMoveSpeed)
             return True
