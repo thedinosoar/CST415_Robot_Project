@@ -2,6 +2,10 @@ from Robot import *
 from Buzzer import *
 
 min_dist_before_stop = 30  # minimum distance robot can be
+
+def changeDefaultDistance(value):
+    defaultMoveDistance = value
+
 def autonomous():
     try:
         while True:
