@@ -11,7 +11,7 @@ def autonomous():
 
             # Checks if Robot can move forward
             if getDistance() > min_dist_before_stop:
-                moveForward()
+                moveForward(defaultMoveDistance, defaultMoveSpeed)
             else:
                 if not changeDirection(): # If the robot can't change direction
                     test_Buzzer()
@@ -44,12 +44,12 @@ def changeDirection():
     next_direction = furthestChoice(left_path, right_path)
     if next_direction is LEFT:
         if left_path >= min_dist_before_stop:
-            turn(next_direction)
+            turn(next_direction, defaultMoveDistance, defaultMoveSpeed)
             return True
 
     if next_direction is RIGHT:
         if right_path >= min_dist_before_stop:
-            turn(next_direction)
+            turn(next_direction, defaultMoveDistance, defaultMoveSpeed)
             return True
 
     return False
@@ -86,9 +86,6 @@ def test():
             time.sleep(0.2)
     except KeyboardInterrupt:  # When 'Ctrl+C' is pressed, the child program destroy() will be  executed.
         killBot()
-
-
-
 
 
 autonomous()

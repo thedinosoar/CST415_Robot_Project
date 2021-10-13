@@ -29,55 +29,32 @@ class Choice:
 
 
 # Movement Functions
-def moveForward():  # Moves the bot Forward default distance
-    PWM.setMotorModel(-defaultMoveSpeed, defaultMoveSpeed, defaultMoveSpeed, -defaultMoveSpeed)
-    time.sleep(defaultMoveDistance)
-    choiceStack.append(Choice(FORWARD,defaultMoveDistance, defaultMoveSpeed))
 
-def moveForwardSpecified(distance, speed):
+def moveForward(distance, speed):
     PWM.setMotorModel(-speed, speed, speed, -speed)
     time.sleep(distance)
     choiceStack.append(Choice(FORWARD,distance, speed))
+    stopBot()
 
-
-def moveBackward(): # Moves the bot backward default distance
-    PWM.setMotorModel(defaultMoveSpeed, -defaultMoveSpeed, -defaultMoveSpeed, defaultMoveSpeed)    # Front left and back right wheel inputs are reversed for some reason
-    time.sleep(defaultMoveDistance)
-    choiceStack.append(Choice(BACKWARD,defaultMoveDistance, defaultMoveSpeed))
-def moveBackwardSpecified(distance, speed):
+def moveBackward(distance, speed):
     PWM.setMotorModel(speed, -speed, -speed, speed)
     time.sleep(distance)
     choiceStack.append(Choice(BACKWARD,distance, speed))
+    stopBot()
 
-
-def turnLeft(): # Turns the bot to the left
-    PWM.setMotorModel(0.5*defaultMoveSpeed, -0.5*defaultMoveSpeed, 2*defaultMoveSpeed, -2*defaultMoveSpeed)
-    time.sleep(defaultMoveDistance)
-    choiceStack.append(Choice(LEFT,defaultMoveDistance, defaultMoveSpeed))
-def turnLeftSpecified(distance, speed):
+def turnLeft(duration, speed):
     PWM.setMotorModel(.5*speed, -.5*speed, 2*speed, -2*speed)
-    time.sleep(distance)
-    choiceStack.append(Choice(LEFT,distance, speed))
+    time.sleep(duration)
+    choiceStack.append(Choice(LEFT,duration, speed))
+    stopBot()
 
-
-def turnRight(): # Turns the bot to the right
-    PWM.setMotorModel(-2*defaultMoveSpeed, 2*defaultMoveSpeed, -.5*defaultMoveSpeed, .5*defaultMoveSpeed)
-    time.sleep(defaultMoveDistance)
-    choiceStack.append(Choice(RIGHT,defaultMoveDistance, defaultMoveSpeed))
-def turnRightSpecified(distance, speed):
+def turnRight(duration, speed):
     PWM.setMotorModel(-2*speed, 2*speed, -.5*speed, .5*speed)
-    time.sleep(distance)
-    choiceStack.append(Choice(FORWARD,defaultMoveDistance, defaultMoveSpeed))
+    time.sleep(duration)
+    choiceStack.append(Choice(RIGHT,duration, speed))
+    stopBot()
 
-def turn(direction):
-    if direction == LEFT:
-        turnLeft()
-    if direction == RIGHT:
-        turnRight()
-    if direction == STOP:
-        stopBot()
-    print("turn() ERROR: Input should be LEFT, RIGHT, or STOP")
-def turnSpecified(direction, duration, speed):
+def turn(direction, duration, speed):
     if direction == LEFT:
         turnLeft(duration, speed)
     if direction == RIGHT:
