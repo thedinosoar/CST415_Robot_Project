@@ -33,6 +33,7 @@ def furthestChoice(left_path_dist, right_path_dist):  # Returns which path is fu
     return RIGHT
 
 def changeDirection():
+    moveBackward(.5, defaultMoveSpeed)
     if debugMode:
         print("Changing Direction")
     look(70)  # looks to the left
@@ -52,12 +53,12 @@ def changeDirection():
         print("next_direction = ", dir(next_direction))
     if next_direction == LEFT:
         if left_path >= min_dist_before_stop:
-            turn(next_direction, defaultMoveDistance, defaultMoveSpeed)
+            turn(next_direction, .5, defaultMoveSpeed)
             return True
 
     if next_direction == RIGHT:
         if right_path >= min_dist_before_stop:
-            turn(next_direction, defaultMoveDistance, defaultMoveSpeed)
+            turn(next_direction, .5, defaultMoveSpeed)
             return True
     if debugMode:
         print("left and right are too close")
