@@ -2,9 +2,7 @@ from Robot import *
 from Buzzer import *
 
 min_dist_before_stop = 30  # minimum distance robot can be
-debugMode = True
 def autonomous():
-
     try:
         while True:
             stopBot()
@@ -17,7 +15,7 @@ def autonomous():
                     test_Buzzer()
                     if debugMode:
                         print("Attempting backtracking")
-                    if not backtrack(False):
+                    if backtrack(True):
                         print("=======================")
                         print("Cannot Backtrack")
                         print("Ending program...")
@@ -91,9 +89,11 @@ def backtrack(enabled):
                     if last_direction is (FORWARD or BACKWARD):
                         if debugMode:
                             print("Moving last direction = ", dir(-last_direction))
-                        turn(-last_direction, 4, defaultMoveSpeed)
+                        turn(-last_direction, 1, defaultMoveSpeed)
+                        stopBot()
+                        new_path_found = True
                         return True
-
+            return True
         except KeyboardInterrupt:  # When 'Ctrl+C' is pressed, the child program destroy() will be  executed.
             killBot()
 

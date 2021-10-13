@@ -20,7 +20,7 @@ STOP = 0
 defaultMoveDistance = 0.1
 defaultMoveSpeed = 1000
 choiceStack = []
-debugMode = False
+debugMode = True
 
 class Choice:
     def __init__(self, move_direction, move_distance, move_speed):
