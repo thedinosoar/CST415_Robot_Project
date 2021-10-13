@@ -20,6 +20,7 @@ STOP = 0
 defaultMoveDistance = 0.1
 defaultMoveSpeed = 1000
 choiceStack = []
+debugMode = False
 
 class Choice:
     def __init__(self, move_direction, move_distance, move_speed):
@@ -71,6 +72,7 @@ def stopBot(): # Stops the bot
 def killBot():
     PWM.setMotorModel(0, 0, 0, 0)
     pwm_S.setServoPwm('0', 90)
+    buzzer.run('0')
 
 # Servo Functions
 
@@ -91,3 +93,16 @@ def test_Buzzer():
         buzzer.run('0')
     except KeyboardInterrupt:
         buzzer.run('0')
+
+def dir(input):
+    if LEFT:
+        return "LEFT"
+    if RIGHT:
+        return "RIGHT"
+    if BACKWARD:
+        return "BACKWARD"
+    if FORWARD:
+        return "FORWARD"
+    if STOP:
+        return "STOP"
+    return "<Error: Bad input>"
