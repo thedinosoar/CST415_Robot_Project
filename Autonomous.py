@@ -10,12 +10,13 @@ def CDV(value):
 def autonomous():
     try:
         while True:
-            stopBot()
+            # stopBot()
 
             # Checks if Robot can move forward
             if getDistance() > min_dist_before_stop:
-                moveForward(defaultMoveDistance, defaultMoveSpeed)
+                moveForward(defaultMoveDistance, 500)
             else:
+                stopBot()
                 if not changeDirection():  # If the robot can't change direction
                     test_Buzzer()
                     if debugMode:
@@ -26,7 +27,7 @@ def autonomous():
                         print("Ending program...")
                         killBot()
                         return 0
-            time.sleep(.1)
+            # time.sleep(.1)
 
     except KeyboardInterrupt:  # When 'Ctrl+C' is pressed, the child program destroy() will be  executed.
         killBot()
@@ -38,7 +39,7 @@ def furthestChoice(left_path_dist, right_path_dist):  # Returns which path is fu
     return RIGHT
 
 def changeDirection():
-    moveBackward(2.0*defaultMoveDistance, 500)
+    moveBackward(4*defaultMoveDistance, 700)
     if debugMode:
         print("Changing Direction")
     look(70)  # looks to the left
