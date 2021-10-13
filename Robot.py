@@ -34,7 +34,7 @@ def moveForward():  # Moves the bot Forward default distance
     time.sleep(defaultMoveDistance)
     choiceStack.append(Choice(FORWARD,defaultMoveDistance, defaultMoveSpeed))
 
-def moveForward(distance, speed):
+def moveForwardSpecified(distance, speed):
     PWM.setMotorModel(-speed, speed, speed, -speed)
     time.sleep(distance)
     choiceStack.append(Choice(FORWARD,distance, speed))
@@ -44,8 +44,7 @@ def moveBackward(): # Moves the bot backward default distance
     PWM.setMotorModel(defaultMoveSpeed, -defaultMoveSpeed, -defaultMoveSpeed, defaultMoveSpeed)    # Front left and back right wheel inputs are reversed for some reason
     time.sleep(defaultMoveDistance)
     choiceStack.append(Choice(BACKWARD,defaultMoveDistance, defaultMoveSpeed))
-
-def moveBackward(distance, speed):
+def moveBackwardSpecified(distance, speed):
     PWM.setMotorModel(speed, -speed, -speed, speed)
     time.sleep(distance)
     choiceStack.append(Choice(BACKWARD,distance, speed))
@@ -55,8 +54,7 @@ def turnLeft(): # Turns the bot to the left
     PWM.setMotorModel(0.5*defaultMoveSpeed, -0.5*defaultMoveSpeed, 2*defaultMoveSpeed, -2*defaultMoveSpeed)
     time.sleep(defaultMoveDistance)
     choiceStack.append(Choice(LEFT,defaultMoveDistance, defaultMoveSpeed))
-
-def turnLeft(distance, speed):
+def turnLeftSpecified(distance, speed):
     PWM.setMotorModel(.5*speed, -.5*speed, 2*speed, -2*speed)
     time.sleep(distance)
     choiceStack.append(Choice(LEFT,distance, speed))
@@ -66,8 +64,7 @@ def turnRight(): # Turns the bot to the right
     PWM.setMotorModel(-2*defaultMoveSpeed, 2*defaultMoveSpeed, -.5*defaultMoveSpeed, .5*defaultMoveSpeed)
     time.sleep(defaultMoveDistance)
     choiceStack.append(Choice(RIGHT,defaultMoveDistance, defaultMoveSpeed))
-
-def turnRight(distance, speed):
+def turnRightSpecified(distance, speed):
     PWM.setMotorModel(-2*speed, 2*speed, -.5*speed, .5*speed)
     time.sleep(distance)
     choiceStack.append(Choice(FORWARD,defaultMoveDistance, defaultMoveSpeed))
@@ -80,8 +77,7 @@ def turn(direction):
     if direction == STOP:
         stopBot()
     print("turn() ERROR: Input should be LEFT, RIGHT, or STOP")
-
-def turn(direction, duration, speed):
+def turnSpecified(direction, duration, speed):
     if direction == LEFT:
         turnLeft(duration, speed)
     if direction == RIGHT:
