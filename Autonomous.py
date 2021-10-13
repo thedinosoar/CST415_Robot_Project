@@ -38,7 +38,7 @@ def furthestChoice(left_path_dist, right_path_dist):  # Returns which path is fu
     return RIGHT
 
 def changeDirection():
-    moveBackward(2*defaultMoveDistance, .5*defaultMoveSpeed)
+    moveBackward(2.0*defaultMoveDistance, 500)
     if debugMode:
         print("Changing Direction")
     look(70)  # looks to the left
