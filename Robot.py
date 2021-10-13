@@ -33,26 +33,26 @@ class Choice:
 def moveForward(distance, speed):
     PWM.setMotorModel(-speed, speed, speed, -speed)
     time.sleep(distance)
-    choiceStack.append(Choice(FORWARD,distance, speed))
-    stopBot()
+    choiceStack.append(Choice(FORWARD, distance, speed))
+    PWM.setMotorModel(0, 0, 0, 0)
 
 def moveBackward(distance, speed):
     PWM.setMotorModel(speed, -speed, -speed, speed)
     time.sleep(distance)
-    choiceStack.append(Choice(BACKWARD,distance, speed))
-    stopBot()
+    choiceStack.append(Choice(BACKWARD, distance, speed))
+    PWM.setMotorModel(0, 0, 0, 0)
 
 def turnLeft(duration, speed):
     PWM.setMotorModel(.5*speed, -.5*speed, 2*speed, -2*speed)
     time.sleep(duration)
-    choiceStack.append(Choice(LEFT,duration, speed))
-    stopBot()
+    choiceStack.append(Choice(LEFT, duration, speed))
+    PWM.setMotorModel(0, 0, 0, 0)
 
 def turnRight(duration, speed):
     PWM.setMotorModel(-2*speed, 2*speed, -.5*speed, .5*speed)
     time.sleep(duration)
-    choiceStack.append(Choice(RIGHT,duration, speed))
-    stopBot()
+    choiceStack.append(Choice(RIGHT, duration, speed))
+    PWM.setMotorModel(0, 0, 0, 0)
 
 def turn(direction, duration, speed):
     if direction == LEFT:
@@ -60,12 +60,12 @@ def turn(direction, duration, speed):
     if direction == RIGHT:
         turnRight(duration, speed)
     if direction == STOP:
-        stopBot()
+        PWM.setMotorModel(0, 0, 0, 0)
     print("turn() ERROR: Input should be LEFT, RIGHT, or STOP")
+
 
 def stopBot(): # Stops the bot
     PWM.setMotorModel(0, 0, 0, 0)
-    time.sleep(defaultMoveDistance)
 
 
 def killBot():
