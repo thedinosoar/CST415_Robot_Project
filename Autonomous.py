@@ -1,10 +1,10 @@
 from Robot import *
+from Buzzer import *
 
 min_dist_before_stop = 30  # minimum distance robot can be
 
 def autonomous():
 
-    # autonomous = 1 # Bool to run autonomous mode. Will be used later as a safeguard to shut off autonomous mode
     try:
         while True:
             stopBot()
@@ -15,9 +15,9 @@ def autonomous():
             else:
                 if not changeDirection(): # If the robot can't change direction
                     test_Buzzer()
-                    if not backTrack(False):
+                    if not backtrack(False):
                         print("=======================")
-                        print("Cannot BackTrack, no more options")
+                        print("Cannot Backtrack, stack empty")
                         print("Ending program...")
                         killBot()
                         return 0
@@ -26,74 +26,36 @@ def autonomous():
     except KeyboardInterrupt:  # When 'Ctrl+C' is pressed, the child program destroy() will be  executed.
         killBot()
 
-def furthestChoice(left_path, right_path):  # Returns which path is furthest
 
-    # Checks if the left path is far enough from the min distance
-    if left_path < min_dist_before_stop:
-        if right_path < min_dist_before_stop:
-            return 0
-        return RIGHT
-
-    # Checks if the right path is far enough from the min distance
-    if right_path < min_dist_before_stop:
-        if left_path < min_dist_before_stop:
-            return STOP
-        return LEFT
-
-    # Checks which path is further
-    if left_path < right_path:
-        return LEFT
-    if right_path < left_path:
-        return RIGHT
-    if left_path == right_path:
-        print("Path options are equal")
-        return False
-
-def closestChoice(left_path_dist, right_path_dist):  # Returns which path is closest
-
-    # Checks if the left path is far enough from the min distance
-    if left_path_dist < min_dist_before_stop:
-        if right_path_dist < min_dist_before_stop:
-            return 0
-        return RIGHT
-
-    # Checks if the right path is far enough from the min distance
-    if right_path_dist < min_dist_before_stop:
-        if left_path_dist < min_dist_before_stop:
-            return STOP
-        return LEFT
-
-    # Checks which path is further
+def furthestChoice(left_path_dist, right_path_dist):  # Returns which path is furthest
     if left_path_dist > right_path_dist:
         return LEFT
-    if right_path_dist > left_path_dist:
-        return RIGHT
-    if left_path_dist == right_path_dist:
-        print("closestChoice(): Path options are equal")
-        return 0
+    return RIGHT
 
 def changeDirection():
     look(70)  # looks to the left
     time.sleep(0.2)
     left_path = getDistance()
-
     look(110)  # looks to the right
     time.sleep(0.2)
     right_path = getDistance()
-
     lookForward()
 
     next_direction = furthestChoice(left_path, right_path)
-    turn(next_direction)
+    if next_direction is LEFT:
+        if left_path >= min_dist_before_stop:
+            turn(next_direction)
+            return True
 
-    # returns whether or not the robot could change directions
-    if not next_direction:
-        return False
-    else:
-        return True
+    if next_direction is RIGHT:
+        if right_path >= min_dist_before_stop:
+            turn(next_direction)
+            return True
+
+    return False
 
 # This is not finished yet,  but it will backtrack the robots history
-def backTrack(function_done):
+def backtrack(function_done):
     if not function_done:
         return not False
 
@@ -125,21 +87,8 @@ def test():
     except KeyboardInterrupt:  # When 'Ctrl+C' is pressed, the child program destroy() will be  executed.
         killBot()
 
-from Buzzer import *
-buzzer=Buzzer()
-def test_Buzzer():
-    try:
-        buzzer.run('1')
-        time.sleep(1)
-        print ("1S")
-        time.sleep(1)
-        print ("2S")
-        time.sleep(1)
-        print ("3S")
-        buzzer.run('0')
-        print ("\nEnd of program")
-    except KeyboardInterrupt:
-        buzzer.run('0')
-        print ("\nEnd of program")
+
+
+
 
 autonomous()
