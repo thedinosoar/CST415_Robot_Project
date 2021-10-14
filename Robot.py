@@ -51,7 +51,7 @@ def turnLeft(duration, speed):
     PWM.setMotorModel(0, 0, 0, 0)
 
 def turnRight(duration, speed):
-    PWM.setMotorModel(-speed, speed/4, -speed, speed/4)
+    PWM.setMotorModel(-speed, speed/4.0, -speed, speed/4.0)
     # PWM.setMotorModel(-2000, 2000, -500, 500)
     time.sleep(duration)
     choiceStack.append(Choice(RIGHT, duration, speed))
