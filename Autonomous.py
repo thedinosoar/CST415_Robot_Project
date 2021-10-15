@@ -17,13 +17,7 @@ def autonomous():
                 moveForward(defaultMoveDistance, defaultMoveSpeed)
             else:
                 stopBot()
-                moveBackwardAmount = 0
-                if choiceStack.count(Choice) > 0:
-                    while(choiceStack[-1].move_direction == FORWARD):
-                        moveBackwardAmount += 1
-                        choiceStack.pop()
-                    moveBackward(moveBackwardAmount*defaultMoveDistance, defaultMoveSpeed)
-
+                moveBackward(defaultMoveDistance, defaultMoveSpeed)
                 if not changeDirection():  # If the robot can't change direction
                     test_Buzzer()
                     if backtrack(False):
