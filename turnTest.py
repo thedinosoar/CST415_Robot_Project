@@ -3,14 +3,14 @@ from Robot import *
 def turnTest():
 
     # Front Left
-    print("(1000, 0, 0, 0")
-    PWM.setMotorModel(1000, 0, 0, 0)
+    print("(-1000, 0, 0, 0")
+    PWM.setMotorModel(-1000, 0, 0, 0)
     time.sleep(1)
     PWM.setMotorModel(0, 0, 0, 0)
 
     # Back Left
-    print("(0, -1000, 0, 0")
-    PWM.setMotorModel(0, -1000, 0, 0)
+    print("(0, 1000, 0, 0")
+    PWM.setMotorModel(0, 1000, 0, 0)
     time.sleep(1)
     PWM.setMotorModel(0, 0, 0, 0)
 
@@ -27,7 +27,7 @@ def turnTest():
     PWM.setMotorModel(0, 0, 0, 0)
 
     print("turning Left")
-    PWM.setMotorModel(-500, 500, 2000, -2000)
+    PWM.setMotorModel(500, -500, 2000, -2000)
     time.sleep(2)
     PWM.setMotorModel(0, 0, 0, 0)
 
