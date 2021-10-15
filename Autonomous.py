@@ -11,13 +11,13 @@ def autonomous():
     try:
         while True:
             # stopBot()
-
+            print("Last move: " , dir(choiceStack[-1].move_direction))
             # Checks if Robot can move forward
             if getDistance() > min_dist_before_stop:
                 moveForward(defaultMoveDistance, 500)
             else:
                 stopBot()
-                moveBackward(defaultMoveDistance, defaultMoveSpeed)
+                moveBackward(.5, defaultMoveSpeed)
                 if not changeDirection():  # If the robot can't change direction
                     test_Buzzer()
                     if backtrack(False):
