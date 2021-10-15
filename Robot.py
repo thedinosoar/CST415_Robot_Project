@@ -33,9 +33,9 @@ class Choice:
 
 def moveForward(distance, speed):
     PWM.setMotorModel(-speed, speed, speed, -speed)
-    time.sleep(distance)
+    # time.sleep(distance)
     choiceStack.append(Choice(FORWARD, distance, speed))
-    PWM.setMotorModel(0, 0, 0, 0)
+    # PWM.setMotorModel(0, 0, 0, 0)
 
 
 def moveBackward(distance, speed):
