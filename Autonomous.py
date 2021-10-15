@@ -14,10 +14,10 @@ def autonomous():
 
             # Checks if Robot can move forward
             if getDistance() > min_dist_before_stop:
-                moveForward(defaultMoveDistance, defaultMoveSpeed/2)
+                moveForward(defaultMoveDistance, defaultMoveSpeed)
             else:
                 stopBot()
-                moveBackward(defaultMoveDistance, defaultMoveSpeed/2)
+                moveBackward(defaultMoveDistance, defaultMoveSpeed)
                 if not changeDirection():  # If the robot can't change direction
                     test_Buzzer()
                     if backtrack(False):
