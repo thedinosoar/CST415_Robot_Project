@@ -14,7 +14,7 @@ def autonomous():
 
             # Checks if Robot can move forward
             if getDistance() > min_dist_before_stop:
-                moveForward(defaultMoveDistance, defaultMoveSpeed)
+                moveForward(defaultMoveDistance, 500)
             else:
                 stopBot()
                 moveBackward(defaultMoveDistance, defaultMoveSpeed)
