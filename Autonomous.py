@@ -11,7 +11,8 @@ def autonomous():
     try:
         while True:
             # stopBot()
-            print("Last move: " , dir(choiceStack[-1].move_direction))
+            if(len(choiceStack) > 0):
+                print("Last move: " , dir(choiceStack[-1].move_direction))
             # Checks if Robot can move forward
             if getDistance() > min_dist_before_stop:
                 moveForward(defaultMoveDistance, 500)
