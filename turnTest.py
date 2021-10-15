@@ -2,28 +2,32 @@ from Robot import *
 
 def turnTest():
 
-    print("(500, 0, 0, 0")
-    PWM.setMotorModel(500, 0, 0, 0)
+    # Front Left
+    print("(1000, 0, 0, 0")
+    PWM.setMotorModel(1000, 0, 0, 0)
     time.sleep(1)
     PWM.setMotorModel(0, 0, 0, 0)
 
-    print("(0, -500, 0, 0")
-    PWM.setMotorModel(0, -500, 0, 0)
+    # Back Left
+    print("(0, -1000, 0, 0")
+    PWM.setMotorModel(0, -1000, 0, 0)
     time.sleep(1)
     PWM.setMotorModel(0, 0, 0, 0)
 
-    print("(0, 0, 500, 0")
-    PWM.setMotorModel(0, 0, 500, 0)
+    # Front Right
+    print("(0, 0, 1000, 0")
+    PWM.setMotorModel(0, 0, 1000, 0)
     time.sleep(1)
     PWM.setMotorModel(0, 0, 0, 0)
 
-    print("(0, 0, 0, -500")
-    PWM.setMotorModel(0, 0, 0, -500)
+    # Back right
+    print("(0, 0, 0, -1000")
+    PWM.setMotorModel(0, 0, 0, -1000)
     time.sleep(1)
     PWM.setMotorModel(0, 0, 0, 0)
 
     print("turning Left")
-    PWM.setMotorModel(0, -500, 0, -2000)
+    PWM.setMotorModel(-500, 500, 2000, -2000)
     time.sleep(2)
     PWM.setMotorModel(0, 0, 0, 0)
 
