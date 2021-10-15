@@ -20,15 +20,15 @@ def autonomous():
                 moveBackwardAmount = 0
                 if choiceStack.count(Choice) > 0:
                     while(choiceStack[-1].move_direction == FORWARD):
-                        moveBackwardAmount+=1
-                        # choiceStack.pop()
+                        moveBackwardAmount += 1
+                        choiceStack.pop()
                     moveBackward(moveBackwardAmount*defaultMoveDistance, defaultMoveSpeed)
 
                 if not changeDirection():  # If the robot can't change direction
                     test_Buzzer()
-                    if debugMode:
-                        print("Attempting backtracking")
                     if backtrack(False):
+                        if debugMode:
+                            print("Attempting backtracking")
                         print("=======================")
                         print("Cannot Backtrack")
                         print("Ending program...")

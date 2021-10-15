@@ -44,7 +44,7 @@ def moveBackward(distance, speed):
     PWM.setMotorModel(0, 0, 0, 0)
 
 def turnLeft(duration, speed):
-    smallSpeed = int(speed / 4)
+    smallSpeed = int(speed / 2)
     PWM.setMotorModel(speed, -smallSpeed, speed, -smallSpeed)
     # PWM.setMotorModel(2000, -2000, 2000, -2000)
     time.sleep(duration)
@@ -52,7 +52,7 @@ def turnLeft(duration, speed):
     PWM.setMotorModel(0, 0, 0, 0)
 
 def turnRight(duration, speed):
-    smallSpeed = int(speed / 4)
+    smallSpeed = int(speed / 2)
     PWM.setMotorModel(-speed, smallSpeed, -speed, smallSpeed)
     # PWM.setMotorModel(-2000, 2000, -500, 500)
     time.sleep(duration)
