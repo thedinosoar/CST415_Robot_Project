@@ -44,12 +44,12 @@ def changeDirection():
     if debugMode:
         print("Changing Direction")
     look(70)  # looks to the left
-    time.sleep(0.2)
+    time.sleep(0.3)
     left_path = getDistance()
     if debugMode:
         print("left_path = ", left_path)
     look(110)  # looks to the right
-    time.sleep(0.2)
+    time.sleep(0.3)
     right_path = getDistance()
     if debugMode:
         print("right_path = ", left_path)
@@ -60,12 +60,12 @@ def changeDirection():
         print("next_direction = ", dir(next_direction))
     if next_direction == LEFT:
         if left_path >= min_dist_before_stop:
-            turn(next_direction, .5, defaultMoveSpeed)
+            turn(next_direction, 1, defaultMoveSpeed)
             return True
 
     if next_direction == RIGHT:
         if right_path >= min_dist_before_stop:
-            turn(next_direction, .5, defaultMoveSpeed)
+            turn(next_direction, 1, defaultMoveSpeed)
             return True
     if debugMode:
         print("left and right are too close")
