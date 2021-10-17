@@ -18,7 +18,7 @@ def autonomous():
                 moveForward(defaultMoveDistance, 500)
             else:
                 stopBot()
-                moveBackward(.5, defaultMoveSpeed)
+                # moveBackward(.5, defaultMoveSpeed)
                 if not changeDirection():  # If the robot can't change direction
                     test_Buzzer()
                     if backtrack(False):
@@ -60,12 +60,12 @@ def changeDirection():
         print("next_direction = ", dir(next_direction))
     if next_direction == LEFT:
         if left_path >= min_dist_before_stop:
-            turn(next_direction, 1, defaultMoveSpeed)
+            turn(next_direction, .7, defaultMoveSpeed)
             return True
 
     if next_direction == RIGHT:
         if right_path >= min_dist_before_stop:
-            turn(next_direction, 1, defaultMoveSpeed)
+            turn(next_direction, .7, defaultMoveSpeed)
             return True
     if debugMode:
         print("left and right are too close")
