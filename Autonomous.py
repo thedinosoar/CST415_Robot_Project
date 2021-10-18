@@ -9,7 +9,7 @@ def autonomous():
     try:
         while True:
             if len(choiceStack) > 0:
-                print("Last direction [",len(choiceStack),"]: " , dir(choiceStack[-1].move_direction))
+                print("Last direction [", len(choiceStack), "]: ", dir(choiceStack[-1].move_direction))
 
             # Checks if Robot can move forward
             if getDistance() >= min_dist_before_stop:
@@ -49,14 +49,14 @@ def changeDirection():
     # Get left distance
     look(70)  # looks to the left
     time.sleep(0.3)
-    left_path = getDistance() # Gets distance
+    left_path = getDistance()  # Gets distance
     if debugMode:
         print("left_path = ", left_path)
 
     # Get right distance
     look(110)  # looks to the right
     time.sleep(0.3)
-    right_path = getDistance() # Gets distance
+    right_path = getDistance()  # Gets distance
     if debugMode:
         print("right_path = ", left_path)
     lookForward()
@@ -65,7 +65,7 @@ def changeDirection():
     if debugMode:
         print("next_direction = ", dir(next_direction))
 
-    if left_path >= min_dist_before_stop or right_path >= min_dist_before_stop:
+    if (left_path >= min_dist_before_stop) or (right_path >= min_dist_before_stop):
         turn(next_direction, .7, defaultMoveSpeed)
         return True
 
@@ -100,7 +100,6 @@ def backtrack(enabled):
                             print("Moving last direction = ", dir(-last_direction))
                         turn(-last_direction, 1, defaultMoveSpeed)
                         stopBot()
-                        new_path_found = True
                         return True
             return True
         except KeyboardInterrupt:  # When 'Ctrl+C' is pressed, the child program killBot() will be  executed.
@@ -109,13 +108,13 @@ def backtrack(enabled):
 
 if __name__ == '__main__':
 
-    print ('Program is starting ... ')
+    print('Program is starting ... ')
 
     # Input commands for the terminal
     import sys
-    if len(sys.argv)<3:
+    if len(sys.argv) < 3:
         if sys.argv[1] == '-d':
-            if sys.argv[2] > 0 and sys.argv[2] < 30:
+            if 0 < float(sys.argv[2]) < 30:
                 min_dist_before_stop = sys.argv[2]
             else:
                 print("Error, proper syntax is: python Autonomous.py -d <min_dist_before_stop>")
