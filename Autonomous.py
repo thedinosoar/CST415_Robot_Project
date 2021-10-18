@@ -1,35 +1,38 @@
 from Robot import *
 from Buzzer import *
 
-min_dist_before_stop = 30  # minimum distance robot can be
-
-def CDV(value):
-    defaultMoveDistance = value
-    autonomous()
+min_dist_before_stop = 20  # minimum distance robot can be
+max_fails = 6
 
 def autonomous():
+    current_fails = 0
     try:
         while True:
-            # stopBot()
             if len(choiceStack) > 0:
                 print("Last direction [",len(choiceStack),"]: " , dir(choiceStack[-1].move_direction))
 
             # Checks if Robot can move forward
             if getDistance() >= min_dist_before_stop:
                 moveForward(defaultMoveDistance, 500)
+                current_fails = 0
+
             # If too close to wall
             else:
                 stopBot()
-                if not changeDirection():  # If the robot can't change direction
-                    moveBackward(.5, defaultMoveSpeed)
-                    test_Buzzer()
-                    # If backtracking is enabled
-                    if backtrack(False):
-                        print("=======================")
-                        print("Cannot Backtrack")
-                        print("Ending program...")
+                # Tries to change direction
+                while not changeDirection():
+                    # Checks if max number of fails has been reached
+                    if current_fails >= max_fails:
                         killBot()
-                        return 0
+                        test_Buzzer()
+                        test_Buzzer()
+                        test_Buzzer()
+                        print("Max fails have been reached, I'm stuck frfr")
+                        return False
+                    current_fails += 1
+                    test_Buzzer()
+                    moveBackward(.2, defaultMoveSpeed)
+
             time.sleep(.1)
 
     except KeyboardInterrupt:  # When 'Ctrl+C' is pressed, the child program destroy() will be  executed.
@@ -37,21 +40,23 @@ def autonomous():
 
 
 def furthestChoice(left_path_dist, right_path_dist):  # Returns which path is furthest
-    if left_path_dist > right_path_dist:
-        return LEFT
-    return RIGHT
+    return LEFT if left_path_dist > right_path_dist else RIGHT
 
 def changeDirection():
     if debugMode:
         print("Changing Direction")
+
+    # Get left distance
     look(70)  # looks to the left
     time.sleep(0.3)
-    left_path = getDistance()
+    left_path = getDistance() # Gets distance
     if debugMode:
         print("left_path = ", left_path)
+
+    # Get right distance
     look(110)  # looks to the right
     time.sleep(0.3)
-    right_path = getDistance()
+    right_path = getDistance() # Gets distance
     if debugMode:
         print("right_path = ", left_path)
     lookForward()
@@ -59,24 +64,19 @@ def changeDirection():
     next_direction = furthestChoice(left_path, right_path)
     if debugMode:
         print("next_direction = ", dir(next_direction))
-    if next_direction == LEFT:
-        if left_path >= min_dist_before_stop:
-            turn(next_direction, .7, defaultMoveSpeed)
-            return True
 
-    if next_direction == RIGHT:
-        if right_path >= min_dist_before_stop:
-            turn(next_direction, .7, defaultMoveSpeed)
-            return True
-    if debugMode:
-        print("left and right are too close")
+    if left_path >= min_dist_before_stop or right_path >= min_dist_before_stop:
+        turn(next_direction, .7, defaultMoveSpeed)
+        return True
+
+    print("left and right are too close")
     return False
 
 # This is not finished yet,  but it will backtrack the robots history
 def backtrack(enabled):
     if enabled:
         try:
-            if choiceStack.__sizeof__() == 0:
+            if len(choiceStack) == 0:
                 print("Stack Empty, can't backtrack")
                 return False
 
@@ -88,14 +88,14 @@ def backtrack(enabled):
                 last_direction = choiceStack[-1].move_direction
                 if debugMode:
                     print("last_direction = ", dir(last_direction))
-                if last_direction is (LEFT or RIGHT):
+                if last_direction in [LEFT, RIGHT]:
                     # Reverse turn
                     turn(-last_direction, choiceStack[-1].move_distance, choiceStack[-1].move_speed)
                     choiceStack.pop()
                     if debugMode:
                         print("Turning opposite direction: ", dir(-last_direction))
                 else:
-                    if last_direction is (FORWARD or BACKWARD):
+                    if last_direction in {FORWARD, BACKWARD}:
                         if debugMode:
                             print("Moving last direction = ", dir(-last_direction))
                         turn(-last_direction, 1, defaultMoveSpeed)

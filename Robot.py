@@ -19,6 +19,7 @@ STOP = 0
 # Variables
 defaultMoveDistance = 0.1
 defaultMoveSpeed = 1000
+defaultTurnDistance = 1
 choiceStack = []
 debugMode = True
 
@@ -51,14 +52,14 @@ def moveBackward(distance, speed):
 def turnLeft(duration, speed):
     # PWM.setMotorModel(speed, -smallSpeed, speed, -smallSpeed)
     setMotor(-1000, -1000, 2000, 2000)
-    time.sleep(2*duration)
+    time.sleep(duration)
     choiceStack.append(Choice(LEFT, duration, speed))
     PWM.setMotorModel(0, 0, 0, 0)
 
 def turnRight(duration, speed):
     # PWM.setMotorModel(-speed, smallSpeed, -speed, smallSpeed)
     setMotor(2000, 2000, -1000, -1000)
-    time.sleep(2*duration)
+    time.sleep(duration)
     choiceStack.append(Choice(RIGHT, duration, speed))
     PWM.setMotorModel(0, 0, 0, 0)
 
