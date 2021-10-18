@@ -11,19 +11,20 @@ def autonomous():
     try:
         while True:
             # stopBot()
-            if(len(choiceStack) > 0):
-                print("Last move: " , dir(choiceStack[-1].move_direction))
+            if len(choiceStack) > 0:
+                print("Last direction [",len(choiceStack),"]: " , dir(choiceStack[-1].move_direction))
+
             # Checks if Robot can move forward
-            if getDistance() > min_dist_before_stop:
+            if getDistance() >= min_dist_before_stop:
                 moveForward(defaultMoveDistance, 500)
+            # If too close to wall
             else:
                 stopBot()
-                # moveBackward(.5, defaultMoveSpeed)
                 if not changeDirection():  # If the robot can't change direction
+                    moveBackward(.5, defaultMoveSpeed)
                     test_Buzzer()
+                    # If backtracking is enabled
                     if backtrack(False):
-                        if debugMode:
-                            print("Attempting backtracking")
                         print("=======================")
                         print("Cannot Backtrack")
                         print("Ending program...")
@@ -102,20 +103,24 @@ def backtrack(enabled):
                         new_path_found = True
                         return True
             return True
-        except KeyboardInterrupt:  # When 'Ctrl+C' is pressed, the child program destroy() will be  executed.
+        except KeyboardInterrupt:  # When 'Ctrl+C' is pressed, the child program killBot() will be  executed.
             killBot()
 
 
-def test():
-    try:
-        # PWM.setMotorModel(0,0,0,-1000)
-        # time.sleep(2)
-        for i in range(70, 110, 5):
-            pwm_S.setServoPwm('0', i)
-            time.sleep(0.2)
-    except KeyboardInterrupt:  # When 'Ctrl+C' is pressed, the child program destroy() will be  executed.
-        killBot()
+if __name__ == '__main__':
+
+    print ('Program is starting ... ')
+
+    # Input commands for the terminal
+    import sys
+    if len(sys.argv)<3:
+        if sys.argv[1] == '-d':
+            if sys.argv[2] > 0 and sys.argv[2] < 30:
+                min_dist_before_stop = sys.argv[2]
+            else:
+                print("Error, proper syntax is: python Autonomous.py -d <min_dist_before_stop>")
+    autonomous()
 
 
-autonomous()
+# autonomous()
 killBot()

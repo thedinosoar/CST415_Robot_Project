@@ -29,31 +29,35 @@ class Choice:
         self.move_speed = move_speed
 
 
+# A fixed motor function with proper wheel direction
+def setMotor(front_left, back_left, front_right, back_right):
+    PWM.setMotorModel(-front_left, back_left, front_right, back_right)
+
 # Movement Functions
 
 def moveForward(distance, speed):
-    PWM.setMotorModel(-speed, speed, speed, -speed)
+    setMotor(speed, speed, speed, speed)
     # time.sleep(distance)
     choiceStack.append(Choice(FORWARD, distance, speed))
     # PWM.setMotorModel(0, 0, 0, 0)
 
 
 def moveBackward(distance, speed):
-    PWM.setMotorModel(speed, -speed, -speed, speed)
+    setMotor(-speed, -speed, -speed, -speed)
     time.sleep(distance)
     choiceStack.append(Choice(BACKWARD, distance, speed))
     PWM.setMotorModel(0, 0, 0, 0)
 
 def turnLeft(duration, speed):
     # PWM.setMotorModel(speed, -smallSpeed, speed, -smallSpeed)
-    PWM.setMotorModel(1000, -1000, 2000, -2000)
+    setMotor(-1000, -1000, 2000, 2000)
     time.sleep(2*duration)
     choiceStack.append(Choice(LEFT, duration, speed))
     PWM.setMotorModel(0, 0, 0, 0)
 
 def turnRight(duration, speed):
     # PWM.setMotorModel(-speed, smallSpeed, -speed, smallSpeed)
-    PWM.setMotorModel(-2000, 2000, -1000, 1000)
+    setMotor(2000, 2000, -1000, -1000)
     time.sleep(2*duration)
     choiceStack.append(Choice(RIGHT, duration, speed))
     PWM.setMotorModel(0, 0, 0, 0)

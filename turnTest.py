@@ -36,4 +36,31 @@ def turnTest():
     time.sleep(2)
     PWM.setMotorModel(0, 0, 0, 0)
 
-turnTest()
+if __name__ == '__main__':
+
+    print ('Program is starting ... ')
+
+    # Input commands for the terminal
+    import sys
+    if len(sys.argv)==3:
+        if sys.argv[1] == '-left':
+            if sys.argv[2] > 0:
+                turnLeft(sys.argv[2],defaultMoveSpeed)
+        if sys.argv[1] == '-right':
+            if sys.argv[2] > 0:
+                turnRight(sys.argv[2],defaultMoveSpeed)
+    if len(sys.argv) == 1:
+        turnTest()
+    if len(sys.argv) == 7:
+        if sys.argv[1] == '-turn':
+            try:
+                setMotor(sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5])
+                time.sleep(sys.argv[6])
+                stopBot()
+            except KeyboardInterrupt:
+                killBot()
+    killBot()
+
+
+
+# turnTest()
