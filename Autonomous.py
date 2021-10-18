@@ -9,7 +9,7 @@ def autonomous():
     try:
         while True:
             if len(choiceStack) > 0:
-                print("Last direction [", len(choiceStack), "]: ", dir(choiceStack[-1].move_direction))
+                print("Last direction [", len(choiceStack), "]: ", dirToStr(choiceStack[-1].move_direction))
 
             # Checks if Robot can move forward
             if getDistance() >= min_dist_before_stop:
@@ -63,7 +63,7 @@ def changeDirection():
 
     next_direction = furthestChoice(left_path, right_path)
     if debugMode:
-        print("next_direction = ", dir(next_direction))
+        print("next_direction = ", dirToStr(next_direction))
 
     if (left_path >= min_dist_before_stop) or (right_path >= min_dist_before_stop):
         turn(next_direction, .7, defaultMoveSpeed)
@@ -87,17 +87,17 @@ def backtrack(enabled):
                 # If the last thing the robot did was turn, turn the other direction
                 last_direction = choiceStack[-1].move_direction
                 if debugMode:
-                    print("last_direction = ", dir(last_direction))
+                    print("last_direction = ", dirToStr(last_direction))
                 if last_direction in [LEFT, RIGHT]:
                     # Reverse turn
                     turn(-last_direction, choiceStack[-1].move_distance, choiceStack[-1].move_speed)
                     choiceStack.pop()
                     if debugMode:
-                        print("Turning opposite direction: ", dir(-last_direction))
+                        print("Turning opposite direction: ", dirToStr(-last_direction))
                 else:
                     if last_direction in {FORWARD, BACKWARD}:
                         if debugMode:
-                            print("Moving last direction = ", dir(-last_direction))
+                            print("Moving last direction = ", dirToStr(-last_direction))
                         turn(-last_direction, 1, defaultMoveSpeed)
                         stopBot()
                         return True

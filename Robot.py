@@ -76,7 +76,7 @@ def turn(direction, duration, speed):
     print("turn() ERROR: Input should be LEFT, RIGHT, or STOP")
 
 
-def stopBot(): # Stops the bot
+def stopBot():  # Stops the bot
     PWM.setMotorModel(0, 0, 0, 0)
 
 
@@ -96,7 +96,8 @@ def lookForward():
 def look(direction):
     pwm_S.setServoPwm('0', direction)
 
-buzzer=Buzzer()
+
+buzzer = Buzzer()
 def test_Buzzer():
     try:
         buzzer.run('1')
@@ -105,15 +106,16 @@ def test_Buzzer():
     except KeyboardInterrupt:
         buzzer.run('0')
 
-def dir(input):
-    if LEFT:
+
+def dirToStr(direction):
+    if direction == LEFT:
         return "LEFT"
-    if RIGHT:
+    if direction == RIGHT:
         return "RIGHT"
-    if BACKWARD:
+    if direction == BACKWARD:
         return "BACKWARD"
-    if FORWARD:
+    if direction == FORWARD:
         return "FORWARD"
-    if STOP:
+    if direction == STOP:
         return "STOP"
     return "<Error: Bad input>"
