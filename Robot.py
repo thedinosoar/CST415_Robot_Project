@@ -32,7 +32,7 @@ class Choice:
 
 # A fixed motor function with proper wheel direction
 def setMotor(front_left, back_left, front_right, back_right):
-    PWM.setMotorModel(-front_left, back_left, front_right, back_right)
+    PWM.setMotorModel(-front_left, back_left, front_right, -back_right)
 
 # Movement Functions
 
