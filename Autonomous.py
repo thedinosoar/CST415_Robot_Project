@@ -132,5 +132,5 @@ if __name__ == '__main__':
     autonomous()
 
 
-# autonomous()
+autonomous()
 killBot()
