@@ -49,7 +49,7 @@ def changeDirection():
 
     # Get left distance
     look(70)  # looks to the left
-    time.sleep(0.5)
+    time.sleep(1)
     print("Left Distance:", getDistance())
     left_path = getDistance()  # Gets distance
     if debugMode:
@@ -57,7 +57,7 @@ def changeDirection():
 
     # Get right distance
     look(110)  # looks to the right
-    time.sleep(0.5)
+    time.sleep(1)
     print("Right Distance:", getDistance())
     right_path = getDistance()  # Gets distance
     if debugMode:
@@ -129,7 +129,7 @@ if __name__ == '__main__':
         dist = getDistance()
         print(dist)
 
-    #autonomous()
+    autonomous()
 
 
 # autonomous()
