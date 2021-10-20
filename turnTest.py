@@ -51,7 +51,7 @@ if __name__ == '__main__':
                 turnRight(sys.argv[2],defaultMoveSpeed)
     if len(sys.argv) == 1:
         turnTest()
-    if len(sys.argv) == 7:
+    if len(sys.argv) > 6:
         if sys.argv[1] == '-turn':
             try:
                 setMotor(sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5])

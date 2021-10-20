@@ -8,12 +8,14 @@ def autonomous():
     current_fails = 0
     try:
         while True:
-            if len(choiceStack) > 0:
-                print("Last direction [", len(choiceStack), "]: ", dirToStr(choiceStack[-1].move_direction))
+            #if len(choiceStack) > 0:
+
+                    # print("Last direction [", len(choiceStack), "]: ", dirToStr(choiceStack[-1].move_direction))
 
             # Checks if Robot can move forward
+            print(getDistance())
             if getDistance() >= min_dist_before_stop:
-                moveForward(defaultMoveDistance, 500)
+                moveForward(defaultMoveDistance, 1000)
                 current_fails = 0
 
             # If too close to wall
