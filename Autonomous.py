@@ -9,7 +9,7 @@ def autonomous():
     try:
         while True:
             if len(choiceStack) > 0:
-                print("Last direction [", len(choiceStack), "]: ", dirToStr(choiceStack[-1].move_direction), ", " + choiceStack[-1].move_distance, ", " + choiceStack[-1].move_speed)
+                print("Last direction [", len(choiceStack), "]: ", dirToStr(choiceStack[-1].move_direction), ", ", choiceStack[-1].move_distance, ", ", choiceStack[-1].move_speed)
 
             # Checks if Robot can move forward
             print("Forward Distance:", getDistance())
