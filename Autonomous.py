@@ -1,7 +1,7 @@
 from Robot import *
 from Buzzer import *
 
-min_dist_before_stop = 20  # minimum distance robot can be
+min_dist_before_stop = 40  # minimum distance robot can be
 max_fails = 6
 
 def autonomous():
