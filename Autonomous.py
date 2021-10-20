@@ -32,7 +32,7 @@ def autonomous():
                         return False
                     current_fails += 1
                     test_Buzzer()
-                    moveBackward(.2, defaultMoveSpeed)
+                    #moveBackward(.2, defaultMoveSpeed)
 
             time.sleep(.1)
 
