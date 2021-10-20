@@ -112,7 +112,7 @@ if __name__ == '__main__':
 
     # Input commands for the terminal
     import sys
-    if len(sys.argv) < 3:
+    if len(sys.argv) > 3:
         if sys.argv[1] == '-d':
             if 0 < float(sys.argv[2]) < 30:
                 min_dist_before_stop = sys.argv[2]
