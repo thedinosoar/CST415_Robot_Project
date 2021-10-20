@@ -125,7 +125,9 @@ if __name__ == '__main__':
     if sys.argv[1] == 'look':
         dir = input("What direction do you want to look?: ")
         look(dir)
-    autonomous()
+        time.sleep(1)
+
+    #autonomous()
 
 
 # autonomous()
