@@ -126,6 +126,8 @@ if __name__ == '__main__':
         dir = input("What direction do you want to look?: ")
         look(dir)
         time.sleep(1)
+        dist = getDistance()
+        print(dist)
 
     #autonomous()
 
