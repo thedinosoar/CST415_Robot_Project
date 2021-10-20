@@ -122,12 +122,12 @@ if __name__ == '__main__':
             else:
                 print("Error, proper syntax is: python Autonomous.py -d <min_dist_before_stop>")
 
-    if sys.argv[1] == 'look':
-        dir = input("What direction do you want to look?: ")
-        look(dir)
-        time.sleep(1)
-        dist = getDistance()
-        print(dist)
+    # if sys.argv[1] == 'look':
+    #     dir = input("What direction do you want to look?: ")
+    #     look(dir)
+    #     time.sleep(1)
+    #     dist = getDistance()
+    #     print(dist)
 
     autonomous()
 
