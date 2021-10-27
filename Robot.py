@@ -47,8 +47,10 @@ def killBot():
 
 # Servo Functions
 
-def getDistance():
-    return Ultrasonic.get_distance()
+def get_distance():
+    dist = Ultrasonic.get_distance()
+    time.sleep(.25)
+    return dist
 
 def lookForward():
     pwm_S.setServoPwm('0', 60)
