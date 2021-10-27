@@ -17,7 +17,7 @@ BACKWARD = -257
 STOP = 0
 
 # Variables
-defaultMoveDistance = 0.1
+defaultMoveDistance = .3
 defaultMoveSpeed = 1000
 defaultTurnDistance = 1
 choiceStack = []
@@ -31,6 +31,7 @@ class Choice:
 
 
 # A fixed motor function with proper wheel direction
+
 def setMotor(front_left, back_left, front_right, back_right):
     PWM.setMotorModel(-front_left, back_left, front_right, -back_right)
 
@@ -50,14 +51,12 @@ def moveBackward(distance, speed):
     PWM.setMotorModel(0, 0, 0, 0)
 
 def turnLeft(duration, speed):
-    # PWM.setMotorModel(speed, -smallSpeed, speed, -smallSpeed)
     setMotor(-1500, -1500, 2000, 2000)
     time.sleep(duration)
     choiceStack.append(Choice(LEFT, duration, speed))
     PWM.setMotorModel(0, 0, 0, 0)
 
 def turnRight(duration, speed):
-    # PWM.setMotorModel(-speed, smallSpeed, -speed, smallSpeed)
     setMotor(2000, 2000, -1500, -1500)
     time.sleep(duration)
     choiceStack.append(Choice(RIGHT, duration, speed))
