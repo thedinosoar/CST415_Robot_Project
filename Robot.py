@@ -8,27 +8,12 @@ PWM = Motor()
 pwm_S = Servo()
 Ultrasonic = Ultrasonic()
 
-# Enum for directions
-
-LEFT = 256
-RIGHT = -256
-FORWARD = 257
-BACKWARD = -257
-STOP = 0
-
 # Variables
 defaultMoveDistance = .3
 defaultMoveSpeed = 1000
 defaultTurnDistance = 1
 choiceStack = []
 debugMode = True
-
-class Choice:
-    def __init__(self, move_direction, move_distance, move_speed):
-        self.move_direction = move_direction
-        self.move_distance = move_distance
-        self.move_speed = move_speed
-
 
 # A fixed motor function with proper wheel direction
 
@@ -38,14 +23,11 @@ def setMotor(front_left, back_left, front_right, back_right):
 # Movement Functions
 
 def moveForward(distance, speed):
-    setMotor(speed, speed, speed, speed)
-    # time.sleep(distance)
-    choiceStack.append(Choice(FORWARD, distance, speed))
-    # PWM.setMotorModel(0, 0, 0, 0)
-
+    PWM.setMotorModel(-speed, speed, speed, -speed)
+    time.sleep(distance)
 
 def moveBackward(distance, speed):
-    setMotor(-speed, -speed, -speed, -speed)
+    PWM.setMotorModel(speed, -speed, -speed, speed)
     time.sleep(distance)
     choiceStack.append(Choice(BACKWARD, distance, speed))
     PWM.setMotorModel(0, 0, 0, 0)
@@ -62,22 +44,8 @@ def turnRight(duration, speed):
     choiceStack.append(Choice(RIGHT, duration, speed))
     PWM.setMotorModel(0, 0, 0, 0)
 
-def turn(direction, duration, speed):
-    if direction == LEFT:
-        turnLeft(duration, speed)
-        return True
-    if direction == RIGHT:
-        turnRight(duration, speed)
-        return True
-    if direction == STOP:
-        PWM.setMotorModel(0, 0, 0, 0)
-        return True
-    print("turn() ERROR: Input should be LEFT, RIGHT, or STOP")
-
-
 def stopBot():  # Stops the bot
     PWM.setMotorModel(0, 0, 0, 0)
-
 
 def killBot():
     PWM.setMotorModel(0, 0, 0, 0)
@@ -86,15 +54,19 @@ def killBot():
 
 # Servo Functions
 
-def getDistance():
-    return Ultrasonic.get_distance()
+def get_distance():
+    dist = Ultrasonic.get_distance()
+    time.sleep(.25)
+    return dist
 
 def lookForward():
-    pwm_S.setServoPwm('0', 90)
+    pwm_S.setServoPwm('0', 60)
 
-def look(direction):
-    pwm_S.setServoPwm('0', direction)
+def lookRight():
+    pwm_S.setServoPwm('0', 100)
 
+def lookLeft():
+    pwm_S.setServoPwm('0', 20)
 
 buzzer = Buzzer()
 def test_Buzzer():
@@ -105,16 +77,3 @@ def test_Buzzer():
     except KeyboardInterrupt:
         buzzer.run('0')
 
-
-def dirToStr(direction):
-    if direction == LEFT:
-        return "LEFT"
-    if direction == RIGHT:
-        return "RIGHT"
-    if direction == BACKWARD:
-        return "BACKWARD"
-    if direction == FORWARD:
-        return "FORWARD"
-    if direction == STOP:
-        return "STOP"
-    return "<Error: Bad input>"
