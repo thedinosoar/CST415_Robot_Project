@@ -35,7 +35,7 @@ def drive(moveHistory):
         end_found = False
 
         while end_found == False:
-            stopMotor()
+            stopBot()
             lookForward()
             currentNode = moveHistory.pop()
             currentNode.print()
@@ -50,7 +50,7 @@ def drive(moveHistory):
                 lookRight()
                 if get_distance() > 35:
                     moveForward(.8)
-                    stopMotor()
+                    stopBot()
                     turnRight(.8)
                     moveForward(.8)
                     moveHistory.push(currentNode)
