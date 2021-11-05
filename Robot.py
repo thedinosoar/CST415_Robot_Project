@@ -39,7 +39,7 @@ def turnLeft(distance):
     time.sleep(distance)
 
 def turnRight(distance):
-    setMotor(2000, 2000, -1500, -1500)
+    setMotor(2000, 2000,0,1500)
     time.sleep(distance)
 
 def stopBot():  # Stops the bot
