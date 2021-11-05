@@ -35,11 +35,11 @@ def moveBackward(distance):
     # PWM.setMotorModel(0, 0, 0, 0)
 
 def turnLeft(distance):
-    setMotor(1500, -1500, 2000, -2000)
+    setMotor(-1500, -1500, 2000, 2000)
     time.sleep(distance)
 
 def turnRight(distance):
-    setMotor(-2000, 2000, -1500, 1500)
+    setMotor(2000, 2000, -1500, -1500)
     time.sleep(distance)
 
 def stopBot():  # Stops the bot
