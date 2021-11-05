@@ -22,7 +22,7 @@ def drive():
                 lookRight()
                 if get_distance() > 25:
                     turnRight()
-                    moveForward(.2)
+                    moveForward(.2, 1000)
                     moveHistory.push(currentNode)
                     moveHistory.push(MoveNode(1, "R"))
                     moveHistory.push(MoveNode(.2, "F"))
@@ -31,7 +31,7 @@ def drive():
             elif currentNode.get_current_direction() == "F":
                 lookForward()
                 if get_distance() > 15:
-                    moveForward(.2)
+                    moveForward(.2, 1000)
                     moveHistory.push(currentNode)
                     moveHistory.push(MoveNode(.2, "F"))
                 else:
@@ -40,7 +40,7 @@ def drive():
                 lookLeft()
                 if get_distance() > 25:
                     turnLeft()
-                    moveForward(.2)
+                    moveForward(.2, 1000)
                     moveHistory.push(currentNode)
                     moveHistory.push(MoveNode(1, "L"))
                     moveHistory.push(MoveNode(.2, "F"))

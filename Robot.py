@@ -29,11 +29,11 @@ def moveBackward(distance, speed):
     PWM.setMotorModel(speed, -speed, -speed, speed)
     time.sleep(distance)
 
-def turnLeft(distance, speed):
+def turnLeft(distance):
     PWM.setMotorModel(1500, -1500, 2000, -2000)
     time.sleep(distance)
 
-def turnRight(distance, speed):
+def turnRight(distance):
     PWM.setMotorModel(-2000, 2000, -1500, 1500)
     time.sleep(distance)
 
@@ -56,10 +56,10 @@ def lookForward():
     pwm_S.setServoPwm('0', 60)
 
 def lookRight():
-    pwm_S.setServoPwm('0', 100)
+    pwm_S.setServoPwm('0', 145)
 
 def lookLeft():
-    pwm_S.setServoPwm('0', 20)
+    pwm_S.setServoPwm('0', -30)
 
 buzzer = Buzzer()
 def test_Buzzer():
