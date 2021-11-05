@@ -64,7 +64,7 @@ def lookForward():
 
 def lookRight():
     pwm_S.setServoPwm('0', 120)
-    pwm_S.setServoPwm('1',40)
+    pwm_S.setServoPwm('1', 40)
     time.sleep(.25)
 
 def lookLeft():
