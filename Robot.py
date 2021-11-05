@@ -22,26 +22,29 @@ def setMotor(front_left, back_left, front_right, back_right):
 
 # Movement Functions
 
-def moveForward(distance, speed):
-    PWM.setMotorModel(-speed, speed, speed, -speed)
+def moveForward(distance):
+    #PWM.setMotorModel(-speed, speed, speed, -speed)
+    setMotor(500,500,500,500)
     time.sleep(distance)
 
-def moveBackward(distance, speed):
-    PWM.setMotorModel(speed, -speed, -speed, speed)
+def moveBackward(distance):
+    # PWM.setMotorModel(speed, -speed, -speed, speed)
+    setMotor(-500,-500,-500,-500)
     time.sleep(distance)
-    choiceStack.append(Choice(BACKWARD, distance, speed))
-    PWM.setMotorModel(0, 0, 0, 0)
+    # choiceStack.append(Choice(BACKWARD, distance, speed))
+    # PWM.setMotorModel(0, 0, 0, 0)
 
 def turnLeft(distance):
-    PWM.setMotorModel(1500, -1500, 2000, -2000)
+    setMotor(1500, -1500, 2000, -2000)
     time.sleep(distance)
 
 def turnRight(distance):
-    PWM.setMotorModel(-2000, 2000, -1500, 1500)
+    setMotor(-2000, 2000, -1500, 1500)
     time.sleep(distance)
 
 def stopBot():  # Stops the bot
     PWM.setMotorModel(0, 0, 0, 0)
+    time.sleep(.5)
 
 def killBot():
     PWM.setMotorModel(0, 0, 0, 0)
@@ -57,12 +60,16 @@ def get_distance():
 
 def lookForward():
     pwm_S.setServoPwm('0', 60)
+    time.sleep(.25)
 
 def lookRight():
-    pwm_S.setServoPwm('0', 145)
+    pwm_S.setServoPwm('0', 120)
+    pwm_S.setServoPwm('1',40)
+    time.sleep(.25)
 
 def lookLeft():
-    pwm_S.setServoPwm('0', -30)
+    pwm_S.setServoPwm('0', 0)
+    time.sleep(.25)
 
 buzzer = Buzzer()
 def test_Buzzer():
