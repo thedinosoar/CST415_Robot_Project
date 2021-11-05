@@ -24,7 +24,7 @@ def setMotor(front_left, back_left, front_right, back_right):
 
 def moveForward(distance):
     #PWM.setMotorModel(-speed, speed, speed, -speed)
-    setMotor(500,500,500,500)
+    setMotor(1000,1000,1000,1000)
     time.sleep(distance)
 
 def moveBackward(distance):
