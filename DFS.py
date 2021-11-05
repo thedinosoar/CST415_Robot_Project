@@ -5,10 +5,10 @@ from Ultrasonic import *
 from servo import *
 from Robot import *
 from Buzzer import *
-buzzer=Buzzer()       
-PWM = Motor() 
-servoPWM = Servo()
-ultrasonic = Ultrasonic()
+# buzzer = Buzzer()
+# PWM = Motor()
+# servoPWM = Servo()
+# ultrasonic = Ultrasonic()
 
 distanceTolerance = 25
 
