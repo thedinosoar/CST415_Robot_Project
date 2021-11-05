@@ -9,13 +9,14 @@ pwm_S = Servo()
 Ultrasonic = Ultrasonic()
 
 # Variables
-defaultMoveDistance = 0.1
+defaultMoveDistance = .3
 defaultMoveSpeed = 1000
 defaultTurnDistance = 1
 choiceStack = []
 debugMode = True
 
 # A fixed motor function with proper wheel direction
+
 def setMotor(front_left, back_left, front_right, back_right):
     PWM.setMotorModel(-front_left, back_left, front_right, -back_right)
 
@@ -28,6 +29,8 @@ def moveForward(distance, speed):
 def moveBackward(distance, speed):
     PWM.setMotorModel(speed, -speed, -speed, speed)
     time.sleep(distance)
+    choiceStack.append(Choice(BACKWARD, distance, speed))
+    PWM.setMotorModel(0, 0, 0, 0)
 
 def turnLeft(distance):
     PWM.setMotorModel(1500, -1500, 2000, -2000)
