@@ -18,7 +18,7 @@ debugMode = True
 # A fixed motor function with proper wheel direction
 
 def setMotor(front_left, back_left, front_right, back_right):
-    PWM.setMotorModel(-ront_left, back_left, front_right, back_right)
+    PWM.setMotorModel(front_left, back_left, front_right, back_right)
 
 # Movement Functions
 
@@ -70,6 +70,24 @@ def lookRight():
 def lookLeft():
     pwm_S.setServoPwm('0', 0)
     time.sleep(.25)
+
+def sweepView():
+    servoPWM.setServoPwm('0', 0)
+    leftDistance = ultrasonic.get_distance()
+    time.sleep(.25)
+    servoPWM.setServoPwm('0', 60)
+    centerDistance = ultrasonic.get_distance()
+    time.sleep(.25)
+    servoPWM.setServoPwm('0', 120)
+    rightDistance = ultrasonic.get_distance()
+    # if rightDistance > distanceTolerance and leftDistance > distanceTolerance and centerDistance > distanceTolerance:
+    #     return distanceTolerance + 1
+    if (rightDistance < leftDistance and rightDistance < centerDistance):
+        return 1 #right
+    if (leftDistance < rightDistance and leftDistance < centerDistance):
+        return 2 #left
+    else:
+        return 3 #center
 
 buzzer = Buzzer()
 def test_Buzzer():
