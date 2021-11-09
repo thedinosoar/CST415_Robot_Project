@@ -36,6 +36,12 @@ def turnTest():
     time.sleep(2)
     PWM.setMotorModel(0, 0, 0, 0)
 
+
+
+def newLeft(moveTime):
+    PWM.setMotorModel(-1500,-1500,1500,1500)
+    time.sleep(moveTime)
+
 if __name__ == '__main__':
 
     print ('Program is starting ... ')
@@ -45,7 +51,7 @@ if __name__ == '__main__':
     if len(sys.argv)==3:
         if sys.argv[1] == '-left':
             if sys.argv[2] > 0:
-                turnLeft(sys.argv[2],defaultMoveSpeed)
+                newLeft(sys.argv[2])
         if sys.argv[1] == '-right':
             if sys.argv[2] > 0:
                 turnRight(sys.argv[2],defaultMoveSpeed)
