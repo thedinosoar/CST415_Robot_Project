@@ -18,18 +18,18 @@ debugMode = True
 # A fixed motor function with proper wheel direction
 
 def setMotor(front_left, back_left, front_right, back_right):
-    PWM.setMotorModel(-front_left, back_left, front_right, -back_right)
+    PWM.setMotorModel(-ront_left, back_left, front_right, back_right)
 
 # Movement Functions
 
 def moveForward(distance):
     #PWM.setMotorModel(-speed, speed, speed, -speed)
-    setMotor(500,500,500,500)
+    setMotor(600,600,600,600)
     time.sleep(distance)
 
 def moveBackward(distance):
     # PWM.setMotorModel(speed, -speed, -speed, speed)
-    setMotor(-500,-500,-500,-500)
+    setMotor(-600,-600,-600,-600)
     time.sleep(distance)
     # choiceStack.append(Choice(BACKWARD, distance, speed))
     # PWM.setMotorModel(0, 0, 0, 0)
