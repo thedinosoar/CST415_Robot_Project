@@ -75,8 +75,8 @@ def drive(moveHistory):
                 #     moveHistory.push(MoveNode(1, "R"))
                 #     print("RIGHT TURN")
                 #     moveHistory.push(MoveNode(.8, "F"))
-                # else:
-                #     moveHistory.push(currentNode)
+                else:
+                     moveHistory.push(currentNode)
             elif currentNode.get_current_direction() == "F":
                 lookForward()
                 if get_distance() > 15:
