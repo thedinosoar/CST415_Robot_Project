@@ -74,12 +74,15 @@ def lookLeft():
 def sweepView():
     lookLeft()
     leftDistance = ultrasonic.get_distance()
+    print(leftDistance)
     time.sleep(.25)
     lookForward()
     centerDistance = ultrasonic.get_distance()
+    print(centerDistance)
     time.sleep(.25)
     lookRight()
     rightDistance = ultrasonic.get_distance()
+    print(rightDistance)
     # if rightDistance > distanceTolerance and leftDistance > distanceTolerance and centerDistance > distanceTolerance:
     #     return distanceTolerance + 1
     if (rightDistance < leftDistance and rightDistance < centerDistance):
