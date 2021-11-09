@@ -72,13 +72,13 @@ def lookLeft():
     time.sleep(.25)
 
 def sweepView():
-    servoPWM.setServoPwm('0', 0)
+    lookLeft()
     leftDistance = ultrasonic.get_distance()
     time.sleep(.25)
-    servoPWM.setServoPwm('0', 60)
+    lookForward()
     centerDistance = ultrasonic.get_distance()
     time.sleep(.25)
-    servoPWM.setServoPwm('0', 120)
+    lookRight()
     rightDistance = ultrasonic.get_distance()
     # if rightDistance > distanceTolerance and leftDistance > distanceTolerance and centerDistance > distanceTolerance:
     #     return distanceTolerance + 1
