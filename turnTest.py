@@ -50,7 +50,7 @@ if __name__ == '__main__':
     import sys
     if len(sys.argv)==3:
         if sys.argv[1] == '-left':
-            if sys.argv[2] > 0:
+            if int(sys.argv[2]) > 0:
                 speed = int(sys.argv[2])
                 newLeft(speed)
         if sys.argv[1] == '-right':
