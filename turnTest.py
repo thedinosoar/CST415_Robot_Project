@@ -51,7 +51,8 @@ if __name__ == '__main__':
     if len(sys.argv)==3:
         if sys.argv[1] == '-left':
             if sys.argv[2] > 0:
-                newLeft(sys.argv[2])
+                speed = int(sys.argv[2])
+                newLeft(speed)
         if sys.argv[1] == '-right':
             if sys.argv[2] > 0:
                 turnRight(sys.argv[2],defaultMoveSpeed)
