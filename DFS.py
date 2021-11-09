@@ -17,9 +17,9 @@ def reverseNode(currentNode, moveHistory):
     if rNode.get_direction() == "B":
         moveBackward(rNode.distance)
     elif rNode.get_direction() == "R":
-        turnRight()
+        turnRight(1.27)
     elif rNode.get_direction() == "L":
-        turnLeft()
+        turnLeft(1.27)
         lookStraight()
         if get_distance() > 25:
             moveForward(1)
@@ -51,7 +51,7 @@ def drive(moveHistory):
                 if get_distance() > 35:
                     moveForward(.8)
                     stopBot()
-                    turnRight(.8)
+                    turnRight(1.27)
                     moveForward(.8)
                     moveHistory.push(currentNode)
                     moveHistory.push(MoveNode(.8, "F"))
@@ -71,7 +71,7 @@ def drive(moveHistory):
             elif currentNode.get_current_direction()== "L":
                 lookLeft()
                 if get_distance() > 35:
-                    turnLeft(.8)
+                    turnLeft(1.27)
                     moveForward(.8)
                     
                     moveHistory.push(currentNode)
