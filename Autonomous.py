@@ -13,7 +13,7 @@ def autonomous():
 
             # Checks if Robot is too close
             print("Forward Distance:", getDistance())
-            if getDistance() >= min_dist_before_stop:
+            if get_Distance() >= min_dist_before_stop:
                 moveForward(defaultMoveDistance, 1000)
                 current_fails = 0
 
@@ -63,7 +63,7 @@ def changeDirection():
     print("next_direction = ", dirToStr(next_direction))
 
     if (left_path >= min_dist_before_stop) or (right_path >= min_dist_before_stop):
-        turn(next_direction, defaultTurnDistance, defaultMoveSpeed)
+        turn(next_direction, 1.27, defaultMoveSpeed)
         return True
 
     print("left and right are too close")
@@ -95,13 +95,18 @@ def backtrack(enabled):
                     if last_direction in {FORWARD, BACKWARD}:
                         if debugMode:
                             print("Moving last direction = ", dirToStr(-last_direction))
-                        turn(-last_direction, 1, defaultMoveSpeed)
+                        turn(-last_direction, 1.27, defaultMoveSpeed)
                         stopBot()
                         return True
             return True
         except KeyboardInterrupt:  # When 'Ctrl+C' is pressed, the child program killBot() will be  executed.
             killBot()
 
+def turn(direction, distance):
+    if (direction == LEFT):
+        turnLeft(distance)
+    if (direction == RIGHT):
+        turnRight(distance)
 
 if __name__ == '__main__':
 
