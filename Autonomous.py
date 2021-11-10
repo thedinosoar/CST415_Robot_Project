@@ -14,7 +14,7 @@ def autonomous():
             # Checks if Robot is too close
             print("Forward Distance:", get_distance())
             if get_distance() >= min_dist_before_stop:
-                moveForward(defaultMoveDistance, 1000)
+                moveForward(1.27)
                 current_fails = 0
 
             else:
@@ -45,14 +45,14 @@ def changeDirection():
     print("*Changing Direction*")
 
     # Get left distance
-    look(70)  # looks to the left
+    lookLeft()  # looks to the left
     time.sleep(1) # Sleeps for 1 second
     print("Left Distance:", get_distance())
     left_path = get_distance()  # Gets distance
     print("left_path = ", left_path)
 
     # Get right distance
-    look(110)  # looks to the right
+    lookRight()  # looks to the right
     time.sleep(1)
     print("Right Distance:", get_distance())
     right_path = get_distance()  # Gets distance
