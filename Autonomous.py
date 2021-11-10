@@ -12,8 +12,8 @@ def autonomous():
                 print("Last direction [", len(choiceStack), "]: ", dirToStr(choiceStack[-1].move_direction), ", ", choiceStack[-1].move_distance, ", ", choiceStack[-1].move_speed)
 
             # Checks if Robot is too close
-            print("Forward Distance:", get_Distance())
-            if get_Distance() >= min_dist_before_stop:
+            print("Forward Distance:", get_distance())
+            if get_distance() >= min_dist_before_stop:
                 moveForward(defaultMoveDistance, 1000)
                 current_fails = 0
 
@@ -47,15 +47,15 @@ def changeDirection():
     # Get left distance
     look(70)  # looks to the left
     time.sleep(1) # Sleeps for 1 second
-    print("Left Distance:", get_Distance())
-    left_path = get_Distance()  # Gets distance
+    print("Left Distance:", get_distance())
+    left_path = get_distance()  # Gets distance
     print("left_path = ", left_path)
 
     # Get right distance
     look(110)  # looks to the right
     time.sleep(1)
-    print("Right Distance:", get_Distance())
-    right_path = get_Distance()  # Gets distance
+    print("Right Distance:", get_distance())
+    right_path = get_distance()  # Gets distance
     print("right_path = ", left_path)
     lookForward()
 
