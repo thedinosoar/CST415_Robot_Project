@@ -5,7 +5,7 @@ from Ultrasonic import *
 from servo import *
 from Robot import *
 from Buzzer import *
-from Server import *
+from server import *
 # buzzer = Buzzer()
 # PWM = Motor()
 # servoPWM = Servo()
