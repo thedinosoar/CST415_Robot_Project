@@ -58,7 +58,7 @@ def drive(moveHistory):
                         print("RIGHT")
                         camera.start_preview()
                         time.sleep(5)
-                        camera.capture('/home/right.jpg')
+                        camera.capture('/home/Desktop/right.jpg')
                         camera.stop_preview()
                         # moveForward(.8)
                         # stopBot()
