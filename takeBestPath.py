@@ -6,7 +6,8 @@ from servo import *
 from Robot import *
 from Buzzer import *
 from server import *
-import picamera
+from picamera import PiCamera
+import time
 # buzzer = Buzzer()
 # PWM = Motor()
 # servoPWM = Servo()
