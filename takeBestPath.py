@@ -5,12 +5,14 @@ from Ultrasonic import *
 from servo import *
 from Robot import *
 from Buzzer import *
+from Server import *
 # buzzer = Buzzer()
 # PWM = Motor()
 # servoPWM = Servo()
 # ultrasonic = Ultrasonic()
 
 distanceTolerance = 25
+camera = PiCamera()
 
 def reverseNode(currentNode, moveHistory):
     rNode = currentNode.reverse()
@@ -52,6 +54,10 @@ def drive(moveHistory):
                     checks = sweepView()
                     if checks == 1:
                         print("RIGHT")
+                        camera.start_preview()
+                        sleep(5)
+                        camera.capture('C:\Users\phogg\OneDrive\Documents\GCU\CST-415\right.jpg')
+                        camera.stop_preview
                         # moveForward(.8)
                         # stopBot()
                         # turnRight(1.27)
