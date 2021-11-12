@@ -57,7 +57,7 @@ def drive(moveHistory):
                     if checks == 1:
                         print("RIGHT")
                         camera.start_preview()
-                        sleep(5)
+                        time.sleep(5)
                         camera.capture('/home/right.jpg')
                         camera.stop_preview()
                         # moveForward(.8)
