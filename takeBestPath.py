@@ -56,7 +56,7 @@ def drive(moveHistory):
                         print("RIGHT")
                         camera.start_preview()
                         sleep(5)
-                        camera.capture('C:\Users\phogg\OneDrive\Documents\GCU\CST-415\right.jpg')
+                        camera.capture('/home/right.jpg')
                         camera.stop_preview()
                         # moveForward(.8)
                         # stopBot()
