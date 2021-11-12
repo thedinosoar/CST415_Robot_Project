@@ -8,6 +8,7 @@ from Buzzer import *
 from server import *
 from picamera import PiCamera
 import time
+import sys
 # buzzer = Buzzer()
 # PWM = Motor()
 # servoPWM = Servo()
@@ -56,10 +57,7 @@ def drive(moveHistory):
                     checks = sweepView()
                     if checks == 1:
                         print("RIGHT")
-                        camera.start_preview()
-                        time.sleep(5)
-                        camera.capture('/home/Desktop/right.jpg')
-                        camera.stop_preview()
+                        sys(raspistill -o right.jpg)
                         # moveForward(.8)
                         # stopBot()
                         # turnRight(1.27)
