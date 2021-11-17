@@ -62,6 +62,10 @@ def lookForward():
     pwm_S.setServoPwm('0', 60)
     time.sleep(.25)
 
+
+def lookForward():
+    pwm_S.setServoPwm('0', 60)
+
 def lookRight():
     pwm_S.setServoPwm('0', 120)
     #pwm_S.setServoPwm('1',40)
