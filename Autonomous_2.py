@@ -7,6 +7,8 @@ from Robot import *
 # ultrasonic = Ultrasonic()   
 
 distanceTolerance = 25
+leftTolerance = 30
+rightTolerance = 30
 
 def test():
     moveHistory = MoveStack()
@@ -97,7 +99,7 @@ def sweepThisView():
     rightDistance = get_distance()
     time.sleep(.25)
     print("Right: ", rightDistance)
-    if rightDistance > distanceTolerance and leftDistance > distanceTolerance and centerDistance > distanceTolerance:
+    if rightDistance > rightTolerance and leftDistance > leftTolerance and centerDistance > distanceTolerance:
         return distanceTolerance + 1
     
     return 5
