@@ -25,7 +25,7 @@ def reverseNode(currentNode, moveHistory):
         turnRight(1.27)
     elif rNode.get_direction() == "L":
         turnLeft(1.27)
-        lookStraight()
+        lookForward()
         if get_distance() > 25:
             moveForward(1)
             moveHistory.push(MoveNode(1, "F"))
