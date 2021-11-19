@@ -1,13 +1,10 @@
-from MoveNode import *
-from Motor import *  
-from Ultrasonic import *
-from servo import *   
+from MoveNode import *  
 from Buzzer import *
 from Robot import *
-buzzer=Buzzer()       
-PWM = Motor() 
-servoPWM = Servo()
-ultrasonic = Ultrasonic()   
+# buzzer=Buzzer()       
+# PWM = Motor() 
+# servoPWM = Servo()
+# ultrasonic = Ultrasonic()   
 
 distanceTolerance = 25
 
