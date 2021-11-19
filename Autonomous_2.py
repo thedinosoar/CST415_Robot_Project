@@ -89,15 +89,15 @@ def drive():
 def sweepThisView():
     lookLeft()
     leftDistance = get_distance()
-    time.sleep(0.2)
+    #time.sleep(0.2)
     print("Left: ", leftDistance)
     lookForward()
     centerDistance = get_distance()
-    time.sleep(0.2)
+    #time.sleep(0.2)
     print("center: ", centerDistance)
     lookRight()
     rightDistance = get_distance()
-    time.sleep(0.2)
+    #time.sleep(0.2)
     print("Right: ", rightDistance)
     if rightDistance > rightTolerance and leftDistance > leftTolerance and centerDistance > distanceTolerance:
         return distanceTolerance + 1
