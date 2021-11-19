@@ -26,7 +26,7 @@ def drive():
     moveHistory = MoveStack()
     try:
         while True:
-            #lookStraight()
+            lookStraight()
             forwardDistance = sweepThisView()  
             if forwardDistance > distanceTolerance:
                 moveForward(.1)
@@ -84,7 +84,7 @@ def drive():
 #5 to fail distance test
 
 def sweepThisView():
-    turnLeft(1.27)
+    lookLeft(1.27)
     leftDistance = get_distance()
     time.sleep(.25)
     lookForward()
