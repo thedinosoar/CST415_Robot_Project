@@ -34,7 +34,7 @@ def drive():
                 continue
 
             rightDistance = 0
-            lookCenter()
+            lookForward()
             startBuzzer()
             moveBackward(.2)
             while rightDistance < distanceTolerance:
