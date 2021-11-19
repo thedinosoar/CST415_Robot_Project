@@ -4,9 +4,9 @@ from servo import *
 from Ultrasonic import *
 from PCA9685 import PCA9685
 from Buzzer import *
-# PWM = Motor()
-# pwm_S = Servo()
-# Ultrasonic = Ultrasonic()
+PWM = Motor()
+pwm_S = Servo()
+Ultrasonic = Ultrasonic()
 
 # Variables
 defaultMoveDistance = .3
