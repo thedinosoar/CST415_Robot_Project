@@ -88,11 +88,15 @@ def sweepThisView():
     lookLeft()
     leftDistance = get_distance()
     time.sleep(.25)
+    print("Left: ", leftDistance)
     lookForward()
     centerDistance = get_distance()
     time.sleep(.25)
+    print("center: ", centerDistance)
     lookRight()
     rightDistance = get_distance()
+    time.sleep(.25)
+    print("Right: ", rightDistance)
     if rightDistance > distanceTolerance and leftDistance > distanceTolerance and centerDistance > distanceTolerance:
         return distanceTolerance + 1
     
