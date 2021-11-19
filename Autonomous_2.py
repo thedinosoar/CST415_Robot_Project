@@ -44,7 +44,7 @@ def drive():
                 turnRight(1.27)
                 stopBot()
                 rightDistance = get_distance()
-                time.sleep(.1)
+                #time.sleep(.1)
 
             stopBuzzer()
             #rightDistance = get_distance()  
