@@ -78,6 +78,7 @@ def drive():
 
     except KeyboardInterrupt:
         PWM.setMotorModel(0,0,0,0)
+        stopBuzzer()
         print ("\nEnd of program")
 
 #40 because distance thing, lazy for now
