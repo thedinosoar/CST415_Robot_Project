@@ -39,7 +39,7 @@ def drive():
             moveBackward(.2)
             while rightDistance < distanceTolerance:
                 print(str(rightDistance) + " CM")
-                turnRight()
+                turnRight(1.27)
                 stopBot()
                 rightDistance = get_distance()
                 time.sleep(.1)
@@ -84,7 +84,7 @@ def drive():
 #5 to fail distance test
 
 def sweepThisView():
-    lookLeft(1.27)
+    lookLeft()
     leftDistance = get_distance()
     time.sleep(.25)
     lookForward()
